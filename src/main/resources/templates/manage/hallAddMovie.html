@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+		<!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+		<meta name="renderer" content="webkit">
+		<!--国产浏览器高速模式-->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="穷在闹市" />
+		<!-- 作者 -->
+		<meta name="revised" content="穷在闹市.v3, 2019/05/01" />
+		<!-- 定义页面的最新版本 -->
+		<meta name="description" content="网站简介" />
+		<!-- 网站简介 -->
+		<meta name="keywords" content="搜索关键字，以半角英文逗号隔开" />
+		<title>穷在闹市出品</title>
+
+		<!-- 公共样式 开始 -->
+		<style type="text/css">
+		
+		
+		</style>
+		<link rel="stylesheet" type="text/css" href="../../css/base.css">
+		<link rel="stylesheet" type="text/css" href="../../fonts/iconfont.css">
+		<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="js/jquery-form.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../layui/css/layui.css">
+		<script type="text/javascript" src="../../layui/layui.js"></script>
+		<!-- 仅供所有子页面使用
+		公共样式 结束 -->
+		<link rel="stylesheet" type="text/css" href="css/zxf_page.css"/>
+		<!-- easyui -->
+		<link rel="stylesheet" type="text/css" href="js/easyui/themes/default/easyui.css">
+		<link rel="stylesheet" type="text/css" href="js/easyui/themes/icon.css">
+		<script type="text/javascript" src="js/easyui/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="js/easyui/locale/easyui-lang-zh_CN.js"></script>
+		<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
+		<script type="text/javascript" src="js/zxf_page.js"></script>
+		<script type="text/javascript">
+		
+			var total;
+			
+			$(function(){
+				$("#selectHall").window("open");
+			})
+			
+			function getHall(){
+				var CinemaId = $("#selectCinema").val();
+				if(CinemaId != null && CinemaId != "" && CinemaId != "-1"){
+					$.post("getAllHallByCinemaId",{
+						cid:CinemaId
+					},function(data){
+						$("#selectTheHall").empty();
+						$.each(data,function(k,v){
+							$("#selectTheHall").append(
+									 '<option value="'+v.hallId+'">'+v.name+'</option>'
+							)
+						}); 
+					})
+				}
+			}
+			
+			function selectTheHall(){
+				var hallId = $("#selectTheHall").val();
+				if(hallId == null){
+					alert("请选择正确的影厅");
+					return;
+				}
+				$("#selectHall").window("close");
+				$("#hallId").val(hallId);
+				$.post("getMovieListByHall",{
+					hallId:hallId
+				},function(data){
+					$("#tbody").empty();
+					$.each(data,function(k,v){
+						if(v.total == "" || v.total == null){
+							$("#tbody").append(
+									 '	<tr>' +
+									 '		<td>'+v.name+'</td>' +
+									 '		<td>'+v.startTime+'</td>' +
+									 '		<td>'+v.endTime+'</td>' +
+									 '		<td>'+v.price+'</td>' +
+									 '		<td>' +
+									 '			<button class="layui-btn" onclick="updata('+v.scheduleId+')">修改信息</button>\n' +
+									 '		</td>' +
+									 '	</tr>'
+							)
+						}else{
+							$("#total").val(v.total);
+						}
+					}); 
+					$(".zxf_pagediv").empty();
+					addThePage();
+				})
+			}
+			
+			function updata(scheduleId){
+				$.post("getScheduleById",{
+					id:scheduleId
+				},function(data){
+					$("#upselectMovie").val(data.movieId);
+					$("#scheduleId").val(scheduleId);
+					$("#updt").datetimebox('setValue',data.startTime);
+					$("#upprice").val(data.price);
+					$("#updataSchedule").window("open");
+				})
+			}
+			
+			function openAddSchedule(){
+				if($("#hallId").val() == null || $("#hallId").val() == ""){
+					window.location.reload();
+				}
+				$("#addSchedule").window("open");
+			}
+			function addSchedule(){
+				var hallId = $("#hallId").val();
+				var mid = $("#selectMovie").val();
+				var date = new Date($("#dt").val());
+				var time = Date.parse(date);
+				var price = $("#price").val();
+				
+				$.post("addSchedule",{
+					hallId:hallId,
+					movieId:mid,
+					price:price,
+					sTime:time
+				},function(data){
+					alert(data.message);
+					if(data.code > 0){
+						selectTheHall();
+						$("#hallId").val("");
+						$("#selectMovie").val("");
+						$("#dt").datebox('setValue',"");
+						$("#price").val("");
+					}
+				})
+			}
+			
+			
+			function updataSchedule(){
+				var hallId = $("#uphallId").val();
+				var mid = $("#upselectMovie").val();
+				var date = new Date($("#updt").val());
+				var time = Date.parse(date);
+				var price = $("#upprice").val();
+				var scheduleId = $("#scheduleId").val();
+				$.post("updataSchedule",{
+					hallId:hallId,
+					movieId:mid,
+					price:price,
+					sTime:time,
+					scheduleId,scheduleId
+				},function(data){
+					alert(data.message);
+					if(data.code > 0){
+						selectTheHall();
+						$("#uphallId").val("");
+						$("#upselectMovie").val("");
+						$("#updt").datebox('setValue',"");
+						$("#upprice").val("");
+						$("#updataSchedule").window("close");
+					}
+				})
+			}
+		</script>
+	</head>
+	<body>
+	<input id="hallId" type="text" hidden="hidden">
+	<input id="total" type="text" hidden="hidden">
+	<button class="layui-btn" onclick="openAddSchedule()">新增排片</button>
+	<div id="selectHall" class="easyui-window" title="选择影厅" closed="true" style="width:400px;height:150px;padding:5px;">
+		请选择影院与影厅:<br>
+		<select id="selectCinema" onchange="getHall()">
+			<option value="-1">请选择</option>
+			<option th:each="c:${CinemaList}" th:value="${c.cinemaId}" th:text="${c.name}"></option>
+		</select>
+		<select id="selectTheHall"></select>
+		<div id="dlg-buttons">
+			<a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="selectTheHall()">确定</a>
+			<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#selectHall').window('close')">返回</a>
+		</div>
+	</div>
+	
+	<div id="addSchedule" class="easyui-window" title="新增排片" closed="true" style="width:350px;height:350px;padding:5px;">
+		选择电影:<select id="selectMovie" onchange="getHall()">
+			<option value="-1">请选择</option>
+			<option th:each="m:${MovieList}" th:value="${m.movieId}" th:text="${m.name}"></option>
+		</select><br>
+		开始时间:<input id="dt" class="easyui-datetimebox" style="width:200px"><br>
+		价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格:<input class="easyui-text" type="text" id="price"><br>
+		<div id="dlg-buttons">
+			<a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="addSchedule()">添加</a>
+			<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#addSchedule').window('close')">返回</a>
+		</div>
+	</div>
+	
+	<div id="updataSchedule" class="easyui-window" title="修改排片" closed="true" style="width:350px;height:350px;padding:5px;">
+		选择电影:<select id="upselectMovie">
+			<option value="-1">请选择</option>
+			<option th:each="m:${MovieList}" th:value="${m.movieId}" th:text="${m.name}"></option>
+		</select><br>
+		开始时间:<input id="updt" class="easyui-datetimebox" style="width:200px"><br>
+		价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格:<input class="easyui-text" type="text" id="upprice"><br>
+		<input hidden="hidden" type="text" id="scheduleId">
+		<div id="dlg-buttons">
+			<a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="updataSchedule()">确定</a>
+			<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#updataSchedule').window('close')">返回</a>
+		</div>
+	</div>
+	
+	
+	
+	<div>
+	<table class="layui-table">
+				<thead>
+					<tr>
+						<th>电影名称</th>
+						<th>开始时间</th>
+						<th>结束时间</th>
+						<th>价格</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody id="tbody">
+					
+				</tbody>
+			</table>
+			<!-- 分页模块 -->		
+	<!-- 分页样式 -->
+	<div class="zxf_pagediv"></div>
+	<script type="text/javascript">
+	function addThePage(){
+		var total = $("#total").val();
+		$(".zxf_pagediv").createPage({
+			pageNum: total,
+			current: 1,
+			backfun: function(e) {
+				$.get("getMovieListByHall",{
+					hallId:$("#hallId").val(),
+					current:e.current,
+				},function(data){
+					$("#tbody").empty();
+					$.each(data,function(k,v){
+						$("#total").val(v.total);
+						total = v.total;
+						$("#tbody").append(
+								 '	<tr>' +
+								 '		<td>'+v.name+'</td>' +
+								 '		<td>'+v.startTime+'</td>' +
+								 '		<td>'+v.endTime+'</td>' +
+								 '		<td>'+v.price+'</td>' +
+								 '		<td>' +
+								 '			<button class="layui-btn" onclick="updata('+v.scheduleId+')">修改信息</button>\n' +
+								 '		</td>' +
+								 '	</tr>'
+						)
+						
+					}); 
+				})
+			}
+		});
+	}
+	
+	</script>
+			</div>	
+	</body>
+</html>

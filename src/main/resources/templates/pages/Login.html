@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <title>
+
+        登录
+
+        - 环球网通行证
+
+    </title>
+    <!-- <script>
+        if (location.protocol != 'https:') {
+            location.href=location.href.replace("http",'https');
+        }
+    </script> -->
+    <script src="https://himg2.huanqiu.cn/i/Js/main.js"></script>
+    <link href="https://himg2.huanqiu.cn/i/Css/main.css" rel="stylesheet">
+    <meta property="qc:admins" content="342166721330724616314636"/>
+
+    <meta property="wb:webmaster" content="8713ea28b473df7d"/>
+    <meta name="description" itemprop="description" content="环球网是中国领先的国际资讯门户，拥有独立采编权的中央重点新闻网站。环球网秉承环球时报的国际视野，力求及时、客观、权威、独立地报道新闻，致力于应用前沿的互联网技术，为全球化时代的中国互联网用户提供与国际生活相关的资讯服务、互动社区。未来会致力于打造全球化在线生活平台，成为中国与国际之间沟通与交流的桥梁。" />
+    <meta itemprop="name" content="环球网通行证" />
+    <meta itemprop="image" content="https://himg2.huanqiu.cn/i/Css/images/mobile/public_png24_img.png" />
+    
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript">
+ $(function(){  
+	 
+	 var countdown=60; 
+ 	var obj=document.getElementById("get")
+ 	var msg1=$("#msg1").val()
+ 	if(msg1=="1"){
+ 		 settime(obj) 
+ 	}
+ 	function settime(obj) {    
+	    if (countdown == 0) { 
+	        obj.removeAttribute("disabled");    
+	        obj.setAttribute("class","btn-normal btn-mini verify-btn J-verify-btn")
+	        obj.value="免费获取动态验证码"; 
+	        countdown = 60; 
+	        return;
+	    } else { 
+	        obj.setAttribute("disabled", true); 
+	        obj.setAttribute("class","btn-normal btn-mini verify-btn J-verify-btn btn-disabled")
+	        obj.value="重新发送(" + countdown + ")"; 
+	        countdown--; 
+	    } 
+	setTimeout(function() { 
+	    settime(obj) }
+	    ,1000)     	
+	}
+	var TEL_REGEXP =/^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+	
+	function validateTel (tel){
+	      if(!TEL_REGEXP.test(tel)){
+	    	  $("#box").attr("style","visibility:visable")
+	      
+	      } else{
+	    	  $("#box").attr("style","visibility:hidden")
+	      }
+	     
+	}	
+	$("#login-email").blur(function(){
+		var tel=$("#login-email").val();
+		validateTel(tel);
+		});
+	
+});   
+ function getCode(){
+		var phonenum =$("#login-email").val();
+		document.location.href='getCode?phonenum='+phonenum+'&type=2';
+	}
+</script>
+    
+</head>
+
+<body>
+
+<div class="publicHeader">
+
+    <div class="header">
+
+        <a href="http://www.huanqiu.com" target="_blank" class="logo" title="环球网"></a>
+
+        <span class="pageTitle"><b>
+
+            登录
+
+        </b></span>
+
+		<span class="loginBar">
+
+			<b>没有账号？立即 <a target="_blank" href="reg">注册</a></b>
+
+			
+
+			<b class="gohome"><a href="http://www.huanqiu.com/">环球网首页</a></b>
+
+		</span>
+
+    </div>
+
+</div>
+
+
+
+
+    <div class="loginWarp">
+
+        <div class="loginMain">
+
+            <div class="login">
+
+                <form method="post" action="doLogin">
+
+                    <span class="title">用户登录</span>
+
+                    <em class="loginError" th:text="${msg}"></em>
+
+                    <span class="userEmail">
+                    <!-- <input type="text" name="email" value="" style="ime-mode:disabled;"
+                                                   placeholder="请输入邮箱地址/手机号码"> -->
+                     <input th:value="${phonenum}" type="text" id="login-email" class="f-text phone-input" name="phonenum"
+                      placeholder="请输入邮箱地址/手机号码" value="" maxlength="15">
+                                                   
+                    </span>
+
+                    <span class="userPassword">
+                    <!-- <input type="password" name="password" value="" placeholder="密码"> -->
+                    <input th:value="${password}"  type="password" id="login-password" class="f-text pw-input" 
+                    name="password" placeholder="密码">
+                    
+                    </span>
+
+                    <span class="loginVerify">
+
+                    	
+                    </span>
+
+
+
+
+
+                    <div class="remmber">
+
+                        <label><input type="checkbox" name="remember" checked="checked" value="1">下次自动登录</label>
+                    
+
+                        <!-- <a href="/forget_password" target="_blank" title="忘记密码？"
+
+                        class="forget">忘记密码？</a> -->
+						<a tabindex="-1" href="getback?step=1" target="_top" class="forget-password">忘记密码？</a>
+                        <b></b>
+
+                        <a href="reg" target="_blank" title="立即注册">立即注册</a>
+
+                    </div>
+
+	    			<span class="loginBtn">
+
+	    				<input type="submit" value="登 录" name="submit">
+
+	    			</span>
+
+
+
+                    <div class="otherLogin">
+
+                        <span class="title">可以使用以下方式登录：</span>
+
+                        <ul class="loginList">
+
+                            <li><a href="javascript:;" class="qq"></a></li>
+
+                            <li><a href="javascript:;" class="weibo"></a></li>
+
+                            <li><a href="javascript:;" class="baidu"></a></li>
+
+                            <li><a href="javascript:;" class="renren"></a></li>
+
+                           <li><a href="javascript:;" class="weixin"></a></li>
+
+                           <li><a href="javascript:;" class="cmcc"></a></li>
+
+                        </ul>
+
+                    </div>
+
+                </form>
+
+                <div class="weixinScanCode">
+
+                    <span class="title">用微信扫描二维码登录</span>
+
+                    <span class="QRCode"><span class="con"  id="login_weixin"></span></span>
+                    <b class="hqico"></b>
+
+                    <span class="goBack">返回邮箱登录</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="https://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+
+    <script>
+
+      var obj = new WxLogin({
+
+                id:"login_weixin",
+
+                appid: "wx978b57dfa01d7269",
+
+                scope: "snsapi_login",
+
+                redirect_uri: "https://i.huanqiu.com/weixin_login",
+
+                state: "auth_5e72d4629230d2.13501923",
+
+                style: "black",
+
+                href: ""
+
+            });
+
+    </script>
+
+
+
+
+
+<div class="publicFooter">
+
+    <div class="footer">
+
+        <a target="_blank" href="http://corp.huanqiu.com/about/">环球网简介</a><b>|</b>
+
+        <a target="_blank" href="http://corp.huanqiu.com/about/">About huanqiu.com</a><b>|</b>
+
+        <a target="_blank" href="http://www.huanqiu.com/sitemap.html">网站地图</a><b>|</b>
+
+        <a target="_blank" href="http://www.huanqiu.com/weibo.html">官方微博</a><b>|</b>
+
+        <a target="_blank" href="http://corp.huanqiu.com/jobs/">诚聘精英</a><b>|</b>
+
+        <a target="_blank" href="http://corp.huanqiu.com/advertising_services/">广告服务</a><b>|</b>
+
+        <a target="_blank" href="http://corp.huanqiu.com/contactus/">联系方式</a><b>|</b>
+
+        <a target="_blank" href="http://corp.huanqiu.com/privacy_policy/">隐私政策</a><b>|</b>
+
+        <a target="_blank" href="http://corp.huanqiu.com/terms/">服务条款</a>
+
+    </div>
+
+    <div class="copyright">© 环球网 版权所有</div>
+
+</div>
+
+
+
+</body>
+<script src="https://himg2.huanqiu.cn/script/HuanQiuAllBottomV2.Js"></script>
+</html>

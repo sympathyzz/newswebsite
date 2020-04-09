@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+ <head>
+  <title>
+        注册
+
+        - 环球网通行证
+
+    </title>
+  <!-- <script src="js/main.js"></script> -->
+  <link href="https://himg2.huanqiu.cn/i/Css/main.css" rel="stylesheet" />
+  <meta property="qc:admins" content="342166721330724616314636" />
+  <meta property="wb:webmaster" content="8713ea28b473df7d" />
+  <meta name="description" itemprop="description" content="环球网是中国领先的国际资讯门户，拥有独立采编权的中央重点新闻网站。环球网秉承环球时报的国际视野，力求及时、客观、权威、独立地报道新闻，致力于应用前沿的互联网技术，为全球化时代的中国互联网用户提供与国际生活相关的资讯服务、互动社区。未来会致力于打造全球化在线生活平台，成为中国与国际之间沟通与交流的桥梁。" />
+  <meta itemprop="name" content="环球网通行证" />
+  <meta itemprop="image" content="https://himg2.huanqiu.cn/i/Css/images/mobile/public_png24_img.png" />
+  	<script type="text/javascript" src="js/jquery.min.js"></script>
+ 	<script type="text/javascript" src="js/reg.js"></script> 	
+ </head>
+ <body>
+  <div class="publicHeader">
+   <div class="header">
+    <a href="http://www.huanqiu.com" target="_blank" class="logo" title="环球网"></a>
+    <span class="pageTitle"><b> 注册 </b></span>
+    <span class="loginBar"><b>已有账号？马上 <a target="_blank" href="/login">登录</a></b><b class="gohome"><a href="http://www.huanqiu.com/">环球网首页</a></b></span>
+   </div>
+  </div>
+  <div class="publicWarp1">
+   <div class="publicBox" style="height:600px;">
+    <div class="register_2_0_box">
+     <form method="post" action="doReg" onsubmit="return _h.register_check(this)">
+     <input type="hidden" id="msg1" th:value="${msg1}">
+      <ul id="moblieBox" data-only-moblie="1">
+       <li class="m_v"><span class="title">手机号：</span>
+        <input type="text" id="mobile" class="i_t" name="mobile" maxlength="11" placeholder="请输入您的手机作为帐号" 
+        th:value="${phone}" /><span class="prompt" id="box1" style="display:none"><b class="error" id="box11"></b></span>
+        <a  href="javascript:;" id="get" class="btn_disable"  onclick="getCode()"  >发送验证码</a>
+        </li>
+
+ 		<!-- <li class="verifyLi"><span class="title">验证码：</span>
+ 		<input type="text" name="verify" class="verify_moblie" maxlength="4"  data-bg-onblur="input_verify"/>
+ 		<span class="verifyImg"><img src="https://i.huanqiu.com/Members/auth_num" alt="" /><b class="refresh"></b></span>
+ 		<span class="prompt" id="box1" style="display:none"><b class="error" id="box11"></b></span></li> -->
+       <li><span class="title">手机验证码：</span>
+       
+      <input id="verify_code" type="text" class="i_t" name="code" maxlength="6" value="" placeholder="请输入手机验证码" 
+       />
+       
+       <span class="prompt" id="box2" style="display:none"><b class="error" id="box22"></b></span>
+       <input type="hidden" id="code2" th:value="${code}"/>
+       </li>
+       
+                    
+ 		<li><span class="title">真实姓名：</span><input id="name" type="text" class="i_t" name="name" placeholder="请输入您的真实名称" /><span class="prompt" id="box3" style="display:none"><b class="error" id="box33"></b></span></li>
+       <li><span class="title">身份证号：</span><input id="IDnum" type="text" class="i_t" name="idno" maxlength="18" placeholder="请转入18位身份证号码" /><span class="prompt" id="box4" style="display:none"><b class="error" id="box44"></b></span></li>
+       <li><span class="title">密码：</span>
+     <input id="password" type="password" class="i_t" name="password" maxlength="16" th:value="${password}" placeholder="请输入密码"  /><span class="illustrate">密码为6到16个字符</span><span class="prompt" id="box5" style="display:none"><b class="error" id="box55"></b></span></li>
+     
+ 
+ </ul>
+      <ul class="buttons" style="position:relative;">
+       <li class="protocol"><input type="checkbox" name="notice" checked="checked" value="1" /><label>我已阅读并同意<a target="_blank" href="/agreement">《环球网用户服务条款与隐私保护政策》</a></label></li>
+       <li class="btn"><input type="submit" value="注册我的环球网账号" class="submitBtn" /></li>
+       <a style="position: absolute;right:46px;bottom:0;height:40px;line-height:40px;" target="_blank" href="/jzjk.html">家长监控</a>
+      </ul>
+      <input type="hidden" id="type" name="type" />
+     </form>
+    </div>
+   </div>
+  </div>
+  <div class="publicFooter">
+   <div class="footer">
+    <a target="_blank" href="http://corp.huanqiu.com/about/">环球网简介</a>
+    <b>|</b>
+    <a target="_blank" href="http://corp.huanqiu.com/about/">About huanqiu.com</a>
+    <b>|</b>
+    <a target="_blank" href="http://www.huanqiu.com/sitemap.html">网站地图</a>
+    <b>|</b>
+    <a target="_blank" href="http://www.huanqiu.com/weibo.html">官方微博</a>
+    <b>|</b>
+    <a target="_blank" href="http://corp.huanqiu.com/jobs/">诚聘精英</a>
+    <b>|</b>
+    <a target="_blank" href="http://corp.huanqiu.com/advertising_services/">广告服务</a>
+    <b>|</b>
+    <a target="_blank" href="http://corp.huanqiu.com/contactus/">联系方式</a>
+    <b>|</b>
+    <a target="_blank" href="http://corp.huanqiu.com/privacy_policy/">隐私政策</a>
+    <b>|</b>
+    <a target="_blank" href="http://corp.huanqiu.com/terms/">服务条款</a>
+   </div>
+   <div class="copyright">
+    &copy; 环球网 版权所有
+   </div>
+  </div>
+  <script src="https://himg2.huanqiu.cn/script/HuanQiuAllBottomV2.Js"></script>
+ </body>
+</html>

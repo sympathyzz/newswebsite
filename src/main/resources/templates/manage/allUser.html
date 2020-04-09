@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+		<!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+		<meta name="renderer" content="webkit">
+		<!--国产浏览器高速模式-->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="穷在闹市" />
+		<!-- 作者 -->
+		<meta name="revised" content="穷在闹市.v3, 2019/05/01" />
+		<!-- 定义页面的最新版本 -->
+		<meta name="description" content="网站简介" />
+		<!-- 网站简介 -->
+		<meta name="keywords" content="搜索关键字，以半角英文逗号隔开" />
+		<title>穷在闹市出品</title>
+
+		<!-- 公共样式 开始 -->
+		<style type="text/css">
+		
+		#cinemaImage{
+			position:absolute;
+			width:200px;
+			height:200px;
+			right:20px;
+			top:40px;
+			z-index:100;
+		}
+		
+		
+		</style>
+		<link rel="stylesheet" type="text/css" href="../../css/base.css">
+		<link rel="stylesheet" type="text/css" href="../../fonts/iconfont.css">
+		<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="js/jquery-form.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../layui/css/layui.css">
+		<script type="text/javascript" src="../../layui/layui.js"></script>
+		<!-- 仅供所有子页面使用
+		公共样式 结束 -->
+		<link rel="stylesheet" type="text/css" href="css/zxf_page.css"/>
+		<!-- easyui -->
+		<link rel="stylesheet" type="text/css" href="js/easyui/themes/default/easyui.css">
+		<link rel="stylesheet" type="text/css" href="js/easyui/themes/icon.css">
+		<script type="text/javascript" src="js/easyui/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="js/easyui/locale/easyui-lang-zh_CN.js"></script>
+		<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
+<body>
+	<input type="hidden" th:value="${total}" id="total">
+	<input type="hidden" id="num" value="1">
+		<div class="cBody">
+			<div class="console">
+				<div class="layui-input-inline">
+					<input type="text" name="name" lay-verify="required" id="aname" placeholder="请输入影院名称" autocomplete="off" class="layui-input">
+				</div> 
+				<button class="layui-btn" onclick="search()">查询</button>
+			<table class="layui-table">
+				<thead>
+					<tr>
+						<th>头像</th>
+						<th>姓名</th>
+						<th>邮箱</th>
+						<th>电话</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody id="tbody">
+					<tr th:each="u:${userList}" >
+						<td>
+							<img th:src="'userHead/'+${u.headImg}">
+						</td>
+						<td th:text="${u.username}"></td>
+						<td th:text="${u.email}"></td>
+						<td th:text="${u.phone}"></td>
+						<td>
+							<button class="layui-btn" th:if="${u.status} == '1'" th:onclick="'javascript:changeStatus('+${u.userId}+',0'+')' ">取消管理</button>
+							<button class="layui-btn" th:if="${u.status} == '0'" th:onclick="'javascript:changeStatus('+${u.userId}+',1'+')' ">添加管理</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	<!-- 分页模块 -->		
+	<!-- 分页样式 -->
+	<script type="text/javascript" src="js/zxf_page.js"></script>
+	<div class="zxf_pagediv"></div>
+	<script type="text/javascript">
+	//翻页
+	$(function(){
+		addThePage();
+	})
+		function addThePage(){
+			var total = $("#total").val();
+			$(".zxf_pagediv").createPage({
+				pageNum: total,
+				current: 1,
+				backfun: function(data) {
+					var name = $("#aname").val();
+					$.post("getAllUserByPage",{
+						name:name,
+						current:data.current
+					},function(data){
+						$("#tbody").empty();
+						$.each(data,function(k,v){
+							if(v.total == "" || v.total == null){
+								var s = "";
+								if(v.status == 1){
+									s = '<button class="layui-btn" onclick="changeStatus('+v.userId+',0) ">取消管理</button>';
+								}else{
+									s = '<button class="layui-btn" onclick="changeStatus('+v.userId+',1) ">添加管理</button>';
+								}
+								$("#tbody").append(
+									'<tr>'+
+										'<td>'+
+											'<img src="userHead/+'+v.headImg+'">'+
+										'</td>'+
+										'<td>'+v.username+'</td>'+
+										'<td>'+v.email+'</td>'+
+										'<td>'+v.phone+'</td>'+
+										'<td>'+
+											s+
+										'</td>'+
+										
+									'</tr>'
+								)
+							}else{
+								$("#total").val(v.total);
+							}
+						}); 
+					});
+				}
+			});
+		}
+	
+		 function search(){
+				var name = $("#aname").val();
+				$.post("getAllUserByPage",{
+					name:name,
+					current:1
+				},function(data){
+					$("#tbody").empty();
+					
+					$.each(data,function(k,v){
+						if(v.total == "" || v.total == null){
+							var s = "";
+							if(v.status == 1){
+								s = '<button class="layui-btn" onclick="changeStatus('+v.userId+',0) ">取消管理</button>';
+							}else{
+								s = '<button class="layui-btn" onclick="changeStatus('+v.userId+',1) ">添加管理</button>';
+							}
+							$("#tbody").append(
+								'<tr>'+
+									'<td>'+
+										'<img src="userHead/+'+v.headImg+'">'+
+									'</td>'+
+									'<td>'+v.username+'</td>'+
+									'<td>'+v.email+'</td>'+
+									'<td>'+v.phone+'</td>'+
+									'<td>'+
+										s+
+									'</td>'+
+									
+								'</tr>'
+							)
+						}else{
+							$("#total").val(v.total);
+						}
+					});
+					$(".zxf_pagediv").empty();
+					addThePage();
+				});
+			}
+		 
+		 function changeStatus(id,status){
+			 $.post("changeStatus",{
+				 userId:id,
+				 status:status
+			 },function(data){
+				 alert(data.message);
+			 })
+		 }
+	</script>
+	</div>
+	</body>
+</html>

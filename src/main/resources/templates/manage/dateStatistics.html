@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<title>数据统计</title>
+
+<link rel="stylesheet" href="css/bootstrap.min.css">
+
+<script src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/echarts-all.js" ></script>
+
+</head>
+<body>
+    <div id="char1" style="width: 1000px;height:400px;"></div><br>
+    <div id="char2" style="width: 800px;height:400px;"></div><br>
+    <div id="char3" style="width: 800px;height:400px;"></div>
+    <script type="text/javascript">
+    	$(function(){
+    		f1();
+    		f2();
+    		f3();
+    	})
+        // 基于准备好的dom，初始化echarts实例
+        function f1(){
+        	$.post("getScheduleNumberData",{},function(data){
+        		var myChart = echarts.init(document.getElementById('char1'));
+
+                // 指定图表的配置项和数据
+                var option = {
+                    title: {
+                        text: '排片统计'
+                    },
+                    tooltip: {},
+                    legend: {
+                        data:['排片数量']
+                    },
+                    xAxis: {
+                        data: data.nameList
+                    },
+                    yAxis: {},
+                    series: [{
+                        name: '排片数量',
+                        type: 'bar',
+                        data: data.valueList
+                    }]
+                };
+
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
+        	})
+        }
+        
+    	function f2(){
+    		$.post("getTotalTicketOfWeek",{},function(data){
+    			var myChart = echarts.init(document.getElementById('char2'));
+    			
+    			var option = {
+    					title: {
+                            text: '近七天总票房统计'
+                        },
+    				    xAxis: {
+    				        type: 'category',
+    				        data: data.nameList
+    				    },
+    				    yAxis: {
+    				        type: 'value'
+    				    },
+    				    series: [{
+    				        data: data.valueList,
+    				        type: 'line',
+    				        smooth: true
+    				    }]
+    				};
+    			myChart.setOption(option);
+    		})
+    	}
+    	function f3(){
+    		$.post("mainMovieTicket",{},function(data){
+    			var myChart = echarts.init(document.getElementById('char3'));
+        		
+        		var option = {
+        			    title : {
+        			        text: '一周内主要电影票房占比',
+        			        x:100
+        			    },
+        			    tooltip : {
+        			        trigger: 'item',
+        			        formatter: "{a} <br/>{b} : {c} ({d}%)"
+        			    },
+        			    legend: {
+        			        orient: 'vertical',
+        			        left: 'left',
+        			        data: data.nameList
+        			    },
+        			    series : [
+        			        {
+        			            name: '访问来源',
+        			            type: 'pie',
+        			            radius : '55%',
+        			            center: ['50%', '60%'],
+        			            data:data.valueList,
+        			            itemStyle: {
+        			                emphasis: {
+        			                    shadowBlur: 10,
+        			                    shadowOffsetX: 0,
+        			                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+        			                }
+        			            }
+        			        }
+        			    ]
+        			};
+        		
+        		myChart.setOption(option);
+    		})
+    		
+    	}
+    </script>
+</body>
+</html>
