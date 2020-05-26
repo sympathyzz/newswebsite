@@ -57,21 +57,19 @@
 			<table class="layui-table">
 				<thead>
 					<tr>
-						<th>头像</th>
-						<th>姓名</th>
+						<th>用户名</th>
 						<th>邮箱</th>
 						<th>电话</th>
+						<th>身份证号码</th>
 						<th>操作</th>
 					</tr>
 				</thead>
 				<tbody id="tbody">
-					<tr th:each="u:${userList}" >
-						<td>
-							<img th:src="'userHead/'+${u.headImg}">
-						</td>
+					<tr th:each="u:${userList}" >						
 						<td th:text="${u.username}"></td>
 						<td th:text="${u.email}"></td>
 						<td th:text="${u.phone}"></td>
+						<td th:text="${u.idnum}"></td>
 						<td>
 							<button class="layui-btn" th:if="${u.status} == '1'" th:onclick="'javascript:changeStatus('+${u.userId}+',0'+')' ">取消管理</button>
 							<button class="layui-btn" th:if="${u.status} == '0'" th:onclick="'javascript:changeStatus('+${u.userId}+',1'+')' ">添加管理</button>
@@ -111,12 +109,10 @@
 								}
 								$("#tbody").append(
 									'<tr>'+
-										'<td>'+
-											'<img src="userHead/+'+v.headImg+'">'+
-										'</td>'+
 										'<td>'+v.username+'</td>'+
 										'<td>'+v.email+'</td>'+
 										'<td>'+v.phone+'</td>'+
+										'<td>'+v.idnum+'</td>'+
 										'<td>'+
 											s+
 										'</td>'+
@@ -149,13 +145,11 @@
 								s = '<button class="layui-btn" onclick="changeStatus('+v.userId+',1) ">添加管理</button>';
 							}
 							$("#tbody").append(
-								'<tr>'+
-									'<td>'+
-										'<img src="userHead/+'+v.headImg+'">'+
-									'</td>'+
+								'<tr>'+									
 									'<td>'+v.username+'</td>'+
 									'<td>'+v.email+'</td>'+
 									'<td>'+v.phone+'</td>'+
+									'<td>'+v.idnum+'</td>'+
 									'<td>'+
 										s+
 									'</td>'+

@@ -9,8 +9,6 @@ public class User {
 
     private String email;
 
-    private String headImg;
-
     private String phone;
 
     private Integer status;
@@ -47,14 +45,6 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email == null ? null : email.trim();
-    }
-
-    public String getHeadImg() {
-        return headImg;
-    }
-
-    public void setHeadImg(String headImg) {
-        this.headImg = headImg == null ? null : headImg.trim();
     }
 
     public String getPhone() {

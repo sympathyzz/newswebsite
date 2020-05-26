@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
  <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -66,7 +66,11 @@
       <a href="//www.huanqiu.com" target="_self" class="nav-logo"></a>
       <i class="l-line"></i>
       <div class="nav-section">
-       <div class="nav-section-submenu"></div>
+       <div class="nav-section-submenu">
+         <a th:href="'newsPage?atype='+${atype}" target="_blank" th:text="${atype}"></a>
+	       <i>›</i>
+	     <a th:href="'newsPage?atype='+${atype}+'&btype='+${btype}" target="_blank" th:text="${btype}"></a>
+       </div>
        <div class="nav-section-article-title"></div>
       </div>
       <form id="search-form" class="search-form" action="" name="headerSearch">
@@ -200,7 +204,15 @@
      <div class="l-container">
       <div class="kong"></div>
       <!-- 频道菜单 -->
-      <div class="l-list"></div>
+      
+      <div class="l-list" th:each="b:${btypeList}">
+	      <div class="l-list-con">
+	    	<h3 class="list-title"><span></span><a th:href="'newsPage?atype='+${atype}+'&btype='+${b.btype}" th:text="${b.btype}"></a></h3>
+	    	<ul class="l-list-inner"></ul>
+	   	  </div>
+      </div>
+      
+      
       <!-- 频道菜单 -->
      </div>
      <div class="m-container">
@@ -233,9 +245,24 @@
       <div class="m-recommend">
        <h3 class="m-recommend-title">最新消息</h3>
        <div class="m-recommend-con">
-        <ul id="recommend"></ul>
-        <div class="no-loading"></div>
-       </div>
+   <ul id="recommend" th:each="a:${newsList}">
+    <li class="list-item-onepic">
+    <a href="/article/3yNgtkmzS3p" target="_blank">
+    <span class="listPw">
+    <img class="imgMark loadMark imgH fadeImg" src="https://rs1.huanqiucdn.cn/dp/api/images/imageDir/d4d28bfadc819cf8d9cd8619d984614d.jpeg?w=240" alt="" />
+    </span>
+    <div class="con-txt">
+     <h4 th:text="${a.title}"></h4>
+     <div class="con-tool">
+      <span class="original" th:text="${a.source}">海外网</span>
+      <span class="time" th:text="${#dates.format(a.date,'yyyy-MM-dd HH:mm')}">2020-05-25 15:52</span>
+     </div>
+    </div>
+    </a>
+    </li>
+   </ul>
+   <div class="no-loading"></div>
+  </div>
       </div>
       <!-- 推荐内容 -->
      </div>

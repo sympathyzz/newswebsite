@@ -2,8 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.newswebsite.dao.NewsTypeMapper">
   <resultMap id="BaseResultMap" type="com.newswebsite.bean.NewsType">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="news_id" jdbcType="INTEGER" property="newsId" />
+    <id column="news_id" jdbcType="INTEGER" property="newsId" />
     <result column="atype_id" jdbcType="INTEGER" property="atypeId" />
     <result column="btype_id" jdbcType="INTEGER" property="btypeId" />
   </resultMap>
@@ -66,7 +65,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, news_id, atype_id, btype_id
+    news_id, atype_id, btype_id
   </sql>
   <select id="selectByExample" parameterType="com.newswebsite.bean.NewsTypeExample" resultMap="BaseResultMap">
     select
@@ -86,11 +85,11 @@
     select 
     <include refid="Base_Column_List" />
     from news_type
-    where id = #{id,jdbcType=INTEGER}
+    where news_id = #{newsId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from news_type
-    where id = #{id,jdbcType=INTEGER}
+    where news_id = #{newsId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.newswebsite.bean.NewsTypeExample">
     delete from news_type
@@ -99,18 +98,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.newswebsite.bean.NewsType">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
     insert into news_type (news_id, atype_id, btype_id
       )
     values (#{newsId,jdbcType=INTEGER}, #{atypeId,jdbcType=INTEGER}, #{btypeId,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.newswebsite.bean.NewsType">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
     insert into news_type
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="newsId != null">
@@ -144,9 +137,6 @@
   <update id="updateByExampleSelective" parameterType="map">
     update news_type
     <set>
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=INTEGER},
-      </if>
       <if test="record.newsId != null">
         news_id = #{record.newsId,jdbcType=INTEGER},
       </if>
@@ -163,8 +153,7 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update news_type
-    set id = #{record.id,jdbcType=INTEGER},
-      news_id = #{record.newsId,jdbcType=INTEGER},
+    set news_id = #{record.newsId,jdbcType=INTEGER},
       atype_id = #{record.atypeId,jdbcType=INTEGER},
       btype_id = #{record.btypeId,jdbcType=INTEGER}
     <if test="_parameter != null">
@@ -174,9 +163,6 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.newswebsite.bean.NewsType">
     update news_type
     <set>
-      <if test="newsId != null">
-        news_id = #{newsId,jdbcType=INTEGER},
-      </if>
       <if test="atypeId != null">
         atype_id = #{atypeId,jdbcType=INTEGER},
       </if>
@@ -184,13 +170,12 @@
         btype_id = #{btypeId,jdbcType=INTEGER},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where news_id = #{newsId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.newswebsite.bean.NewsType">
     update news_type
-    set news_id = #{newsId,jdbcType=INTEGER},
-      atype_id = #{atypeId,jdbcType=INTEGER},
+    set atype_id = #{atypeId,jdbcType=INTEGER},
       btype_id = #{btypeId,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
+    where news_id = #{newsId,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -10,7 +10,7 @@ public interface NewsTypeMapper {
 
     int deleteByExample(NewsTypeExample example);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Integer newsId);
 
     int insert(NewsType record);
 
@@ -18,7 +18,7 @@ public interface NewsTypeMapper {
 
     List<NewsType> selectByExample(NewsTypeExample example);
 
-    NewsType selectByPrimaryKey(Integer id);
+    NewsType selectByPrimaryKey(Integer newsId);
 
     int updateByExampleSelective(@Param("record") NewsType record, @Param("example") NewsTypeExample example);
 

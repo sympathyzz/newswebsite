@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserService{
 		User record =new User();
 		record.setPhone(phone);
 		record.setPassword(password);
-		record.setHeadImg("reg_default.png");
+		//record.setHeadImg("reg_default.png");
 		record.setUsername(username);
 		record.setIdnum(idnum);
 		record.setStatus(0);
@@ -182,7 +182,7 @@ public class UserServiceImpl implements UserService{
 		example.createCriteria().andUserIdEqualTo(Integer.parseInt(userId));
 		List<User> list = userMapper.selectByExample(example);
 		user=list.get(0);
-		 user.setHeadImg(fileName);
+		 //user.setHeadImg(fileName);
 		userMapper.updateByExample(user, example);
 		
 	}

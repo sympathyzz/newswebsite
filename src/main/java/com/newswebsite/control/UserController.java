@@ -375,7 +375,7 @@ public class UserController {
             file.transferTo(dest);
            response.getWriter().write("yes");           
            User user= (User) session.getAttribute("user");
-           user.setHeadImg(fileName);
+           //user.setHeadImg(fileName);
            Cookie cookie=new Cookie("uname",user.getUsername());
 			cookie.setMaxAge(30*60);
 			cookie.setPath("/");

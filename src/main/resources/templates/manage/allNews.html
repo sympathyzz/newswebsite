@@ -199,7 +199,7 @@
 		主&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;演:<input class="easyui-text" type="text" id="actor">以'，'分隔<br>
 		类型: 
 		<div id="typeList" name="movieType">
-    		<input id="type" name="typeId" type="checkbox" th:each="t:${typeList}" th:value="${t.typeId}" th:text="${t.name}">
+    		<input id="type" name="atypeId" type="checkbox" th:each="t:${typeList}" th:value="${t.atypeId}" th:text="${t.atype}">
 		</div>
 			<br>
 		上映时间:<input class="easyui-datebox" type="text" required style="width:200px" id="releaseTime"><br>
@@ -327,27 +327,29 @@
 			<table class="layui-table">
 				<thead>
 					<tr>
-						<th>名称</th>
+						<th>标题</th>
 						<th>类型</th>
-						<th>时长(分钟)</th>
-						<th>上映时间</th>
-						<th>地区</th>
-						<th>语言</th>
+						<th>内容</th>
+						<th>发表时间</th>
+						<th>来源</th>
+						<th>编辑</th>
+						<th>作者</th>
 						<th>操作</th>
 					</tr>
 				</thead>
 				<tbody id="tbody">
 					<tr th:each="m:${movieList}" >
-						<td th:text="${m.name}"></td>
+						<td th:text="${m.title}"></td>
 						<td th:text="${m.type}"></td>
-						<td th:text="${m.duration}"></td>
-						<td th:text="${#dates.format(m.releaseTime, 'yyyy-MM-dd')}"></td>
-						<td th:text="${m.region}"></td>
-						<td th:text="${m.language}"></td>
+						<td th:text="${m.content}"></td>
+						<td th:text="${#dates.format(m.date, 'yyyy-MM-dd HH:mm:ss')}"></td>
+						<td th:text="${m.source}"></td>
+						<td th:text="${m.editor}"></td>
+						<td th:text="${m.author}"></td>
 						<td>
-							<button class="layui-btn" th:onclick="'javascript:details('+${m.movieId}+')' ">详细信息</button>
-							<button class="layui-btn" th:if="${m.status} == 'showing'" th:onclick="'javascript:upd('+${m.movieId}+',1'+')' ">下架</button>
-							<button class="layui-btn" th:if="${m.status} == 'typical'" th:onclick="'javascript:upd('+${m.movieId}+',2'+')' ">上映</button>
+							<button class="layui-btn" th:onclick="'javascript:details('+${m.newsId}+')' ">详细信息</button>
+							<!-- <button class="layui-btn" th:if="${m.status} == 'showing'" th:onclick="'javascript:upd('+${m.movieId}+',1'+')' ">下架</button>
+							<button class="layui-btn" th:if="${m.status} == 'typical'" th:onclick="'javascript:upd('+${m.movieId}+',2'+')' ">上映</button> -->
 						</td>
 					</tr>
 				</tbody>

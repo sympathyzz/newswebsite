@@ -1,26 +1,26 @@
 package com.newswebsite.bean;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 public class Comments {
-    private Integer commentsId;
+    private Integer commentId;
 
     private Integer userId;
 
-    private String comments;
+    private String comment;
 
-    private Integer movieId;
+    private Integer newsId;
 
-    private Timestamp commentsTime;
+    private Date commentTime;
 
-    private Integer score;
+    private Integer agreeNum;
 
-    public Integer getCommentsId() {
-        return commentsId;
+    public Integer getCommentId() {
+        return commentId;
     }
 
-    public void setCommentsId(Integer commentsId) {
-        this.commentsId = commentsId;
+    public void setCommentId(Integer commentId) {
+        this.commentId = commentId;
     }
 
     public Integer getUserId() {
@@ -31,35 +31,35 @@ public class Comments {
         this.userId = userId;
     }
 
-    public String getComments() {
-        return comments;
+    public String getComment() {
+        return comment;
     }
 
-    public void setComments(String comments) {
-        this.comments = comments == null ? null : comments.trim();
+    public void setComment(String comment) {
+        this.comment = comment == null ? null : comment.trim();
     }
 
-    public Integer getMovieId() {
-        return movieId;
+    public Integer getNewsId() {
+        return newsId;
     }
 
-    public void setMovieId(Integer movieId) {
-        this.movieId = movieId;
+    public void setNewsId(Integer newsId) {
+        this.newsId = newsId;
     }
 
-    public Timestamp getCommentsTime() {
-        return commentsTime;
+    public Date getCommentTime() {
+        return commentTime;
     }
 
-    public void setCommentsTime(Timestamp commentsTime) {
-        this.commentsTime = commentsTime;
+    public void setCommentTime(Date commentTime) {
+        this.commentTime = commentTime;
     }
 
-    public Integer getScore() {
-        return score;
+    public Integer getAgreeNum() {
+        return agreeNum;
     }
 
-    public void setScore(Integer score) {
-        this.score = score;
+    public void setAgreeNum(Integer agreeNum) {
+        this.agreeNum = agreeNum;
     }
 }

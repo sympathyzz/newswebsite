@@ -1,21 +1,11 @@
 package com.newswebsite.bean;
 
 public class NewsType {
-    private Integer id;
-
     private Integer newsId;
 
     private Integer atypeId;
 
     private Integer btypeId;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Integer getNewsId() {
         return newsId;

@@ -6,7 +6,6 @@
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="head_img" jdbcType="VARCHAR" property="headImg" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="IDnum" jdbcType="CHAR" property="idnum" />
@@ -70,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    user_id, username, password, email, head_img, phone, status, IDnum
+    user_id, username, password, email, phone, status, IDnum
   </sql>
   <select id="selectByExample" parameterType="com.newswebsite.bean.UserExample" resultMap="BaseResultMap">
     select
@@ -104,11 +103,11 @@
   </delete>
   <insert id="insert" parameterType="com.newswebsite.bean.User">
     insert into user (user_id, username, password, 
-      email, head_img, phone, 
-      status, IDnum)
+      email, phone, status, 
+      IDnum)
     values (#{userId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{email,jdbcType=VARCHAR}, #{headImg,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
-      #{status,jdbcType=INTEGER}, #{idnum,jdbcType=CHAR})
+      #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{idnum,jdbcType=CHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.newswebsite.bean.User">
     insert into user
@@ -124,9 +123,6 @@
       </if>
       <if test="email != null">
         email,
-      </if>
-      <if test="headImg != null">
-        head_img,
       </if>
       <if test="phone != null">
         phone,
@@ -150,9 +146,6 @@
       </if>
       <if test="email != null">
         #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="headImg != null">
-        #{headImg,jdbcType=VARCHAR},
       </if>
       <if test="phone != null">
         #{phone,jdbcType=VARCHAR},
@@ -186,9 +179,6 @@
       <if test="record.email != null">
         email = #{record.email,jdbcType=VARCHAR},
       </if>
-      <if test="record.headImg != null">
-        head_img = #{record.headImg,jdbcType=VARCHAR},
-      </if>
       <if test="record.phone != null">
         phone = #{record.phone,jdbcType=VARCHAR},
       </if>
@@ -209,7 +199,6 @@
       username = #{record.username,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
       email = #{record.email,jdbcType=VARCHAR},
-      head_img = #{record.headImg,jdbcType=VARCHAR},
       phone = #{record.phone,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=INTEGER},
       IDnum = #{record.idnum,jdbcType=CHAR}
@@ -229,9 +218,6 @@
       <if test="email != null">
         email = #{email,jdbcType=VARCHAR},
       </if>
-      <if test="headImg != null">
-        head_img = #{headImg,jdbcType=VARCHAR},
-      </if>
       <if test="phone != null">
         phone = #{phone,jdbcType=VARCHAR},
       </if>
@@ -249,7 +235,6 @@
     set username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
-      head_img = #{headImg,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
       IDnum = #{idnum,jdbcType=CHAR}

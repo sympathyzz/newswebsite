@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.newswebsite.bean.News">
     <id column="news_id" jdbcType="INTEGER" property="newsId" />
     <result column="title" jdbcType="VARCHAR" property="title" />
-    <result column="from" jdbcType="VARCHAR" property="from" />
+    <result column="source" jdbcType="VARCHAR" property="source" />
     <result column="date" jdbcType="TIMESTAMP" property="date" />
     <result column="editor" jdbcType="VARCHAR" property="editor" />
     <result column="author" jdbcType="VARCHAR" property="author" />
@@ -71,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    news_id, title, from, date, editor, author
+    news_id, title, source, date, editor, author
   </sql>
   <sql id="Blob_Column_List">
     content
@@ -125,10 +125,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.newswebsite.bean.News">
-    insert into news (news_id, title, from, 
+    insert into news (news_id, title, source, 
       date, editor, author, 
       content)
-    values (#{newsId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{from,jdbcType=VARCHAR}, 
+    values (#{newsId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, 
       #{date,jdbcType=TIMESTAMP}, #{editor,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, 
       #{content,jdbcType=LONGVARCHAR})
   </insert>
@@ -141,8 +141,8 @@
       <if test="title != null">
         title,
       </if>
-      <if test="from != null">
-        from,
+      <if test="source != null">
+        source,
       </if>
       <if test="date != null">
         date,
@@ -164,8 +164,8 @@
       <if test="title != null">
         #{title,jdbcType=VARCHAR},
       </if>
-      <if test="from != null">
-        #{from,jdbcType=VARCHAR},
+      <if test="source != null">
+        #{source,jdbcType=VARCHAR},
       </if>
       <if test="date != null">
         #{date,jdbcType=TIMESTAMP},
@@ -196,8 +196,8 @@
       <if test="record.title != null">
         title = #{record.title,jdbcType=VARCHAR},
       </if>
-      <if test="record.from != null">
-        from = #{record.from,jdbcType=VARCHAR},
+      <if test="record.source != null">
+        source = #{record.source,jdbcType=VARCHAR},
       </if>
       <if test="record.date != null">
         date = #{record.date,jdbcType=TIMESTAMP},
@@ -220,7 +220,7 @@
     update news
     set news_id = #{record.newsId,jdbcType=INTEGER},
       title = #{record.title,jdbcType=VARCHAR},
-      from = #{record.from,jdbcType=VARCHAR},
+      source = #{record.source,jdbcType=VARCHAR},
       date = #{record.date,jdbcType=TIMESTAMP},
       editor = #{record.editor,jdbcType=VARCHAR},
       author = #{record.author,jdbcType=VARCHAR},
@@ -233,7 +233,7 @@
     update news
     set news_id = #{record.newsId,jdbcType=INTEGER},
       title = #{record.title,jdbcType=VARCHAR},
-      from = #{record.from,jdbcType=VARCHAR},
+      source = #{record.source,jdbcType=VARCHAR},
       date = #{record.date,jdbcType=TIMESTAMP},
       editor = #{record.editor,jdbcType=VARCHAR},
       author = #{record.author,jdbcType=VARCHAR}
@@ -247,8 +247,8 @@
       <if test="title != null">
         title = #{title,jdbcType=VARCHAR},
       </if>
-      <if test="from != null">
-        from = #{from,jdbcType=VARCHAR},
+      <if test="source != null">
+        source = #{source,jdbcType=VARCHAR},
       </if>
       <if test="date != null">
         date = #{date,jdbcType=TIMESTAMP},
@@ -268,7 +268,7 @@
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.newswebsite.bean.News">
     update news
     set title = #{title,jdbcType=VARCHAR},
-      from = #{from,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
       date = #{date,jdbcType=TIMESTAMP},
       editor = #{editor,jdbcType=VARCHAR},
       author = #{author,jdbcType=VARCHAR},
@@ -278,7 +278,7 @@
   <update id="updateByPrimaryKey" parameterType="com.newswebsite.bean.News">
     update news
     set title = #{title,jdbcType=VARCHAR},
-      from = #{from,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
       date = #{date,jdbcType=TIMESTAMP},
       editor = #{editor,jdbcType=VARCHAR},
       author = #{author,jdbcType=VARCHAR}

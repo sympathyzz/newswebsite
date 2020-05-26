@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.stereotype.Service;
+
 import com.newswebsite.bean.Atype;
 import com.newswebsite.bean.AtypeExample;
 import com.newswebsite.bean.Btype;
@@ -16,7 +18,7 @@ import com.newswebsite.service.TypeService;
 
 
 
-
+@Service
 public class TypeServiceImpl implements TypeService{
 	@Resource
 	AtypeMapper am;

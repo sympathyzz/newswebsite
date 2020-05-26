@@ -10,7 +10,7 @@ public interface CommentsMapper {
 
     int deleteByExample(CommentsExample example);
 
-    int deleteByPrimaryKey(Integer commentsId);
+    int deleteByPrimaryKey(Integer commentId);
 
     int insert(Comments record);
 
@@ -18,7 +18,7 @@ public interface CommentsMapper {
 
     List<Comments> selectByExample(CommentsExample example);
 
-    Comments selectByPrimaryKey(Integer commentsId);
+    Comments selectByPrimaryKey(Integer commentId);
 
     int updateByExampleSelective(@Param("record") Comments record, @Param("example") CommentsExample example);
 

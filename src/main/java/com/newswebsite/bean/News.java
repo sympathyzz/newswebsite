@@ -3,14 +3,12 @@ package com.newswebsite.bean;
 import java.util.Date;
 import java.util.List;
 
-
-
 public class News {
     private Integer newsId;
 
     private String title;
 
-    private String from;
+    private String source;
 
     private Date date;
 
@@ -36,12 +34,12 @@ public class News {
         this.title = title == null ? null : title.trim();
     }
 
-    public String getFrom() {
-        return from;
+    public String getSource() {
+        return source;
     }
 
-    public void setFrom(String from) {
-        this.from = from == null ? null : from.trim();
+    public void setSource(String source) {
+        this.source = source == null ? null : source.trim();
     }
 
     public Date getDate() {
@@ -75,13 +73,15 @@ public class News {
     public void setContent(String content) {
         this.content = content == null ? null : content.trim();
     }
-    
     private List<NewsType> type;
     
-    private Atype aType;
-    private Btype bType;
-    private List<NewsType> listaType;
-    private List<NewsType> listbType;
+    private Atype atype;
+    
+    private Btype btype;
+    
+    private List<Atype> listAtype;
+    
+    private List<Btype> listBtype;
 
 	public List<NewsType> getType() {
 		return type;
@@ -91,45 +91,35 @@ public class News {
 		this.type = type;
 	}
 
-	public Atype getaType() {
-		return aType;
+	public Atype getAtype() {
+		return atype;
 	}
 
-	public void setaType(Atype aType) {
-		this.aType = aType;
+	public void setAtype(Atype atype) {
+		this.atype = atype;
 	}
 
-	public Btype getbType() {
-		return bType;
+	public Btype getBtype() {
+		return btype;
 	}
 
-	public void setbType(Btype bType) {
-		this.bType = bType;
+	public void setBtype(Btype btype) {
+		this.btype = btype;
 	}
 
-	public List<NewsType> getListaType() {
-		return listaType;
+	public List<Atype> getListAtype() {
+		return listAtype;
 	}
 
-	public void setListaType(List<NewsType> listaType) {
-		this.listaType = listaType;
+	public void setListAtype(List<Atype> listAtype) {
+		this.listAtype = listAtype;
 	}
 
-	public List<NewsType> getListbType() {
-		return listbType;
+	public List<Btype> getListBtype() {
+		return listBtype;
 	}
 
-	public void setListbType(List<NewsType> listbType) {
-		this.listbType = listbType;
+	public void setListBtype(List<Btype> listBtype) {
+		this.listBtype = listBtype;
 	}
-
-	@Override
-	public String toString() {
-		return "News [newsId=" + newsId + ", title=" + title + ", from=" + from + ", date=" + date + ", editor="
-				+ editor + ", author=" + author + ", content=" + content + ", type=" + type + ", aType=" + aType
-				+ ", bType=" + bType + ", listaType=" + listaType + ", listbType=" + listbType + "]";
-	}
-    
-    
-    
 }

@@ -7,6 +7,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -21,6 +22,7 @@ import com.newswebsite.service.NewsTypeService;
 
 
 
+@Service
 public class NewsServiceImpl implements NewsService{
 	@Autowired
 	NewsMapper newsMapper;
@@ -46,16 +48,14 @@ public class NewsServiceImpl implements NewsService{
 
 			for (News news : lm) {
 				List<NewsType> findMovieTypeByMovieID = newsTypeService.findNewsTypeByNewsID(news.getNewsId());
-				news.setListaType(findMovieTypeByMovieID);
-				news.setListbType(findMovieTypeByMovieID);
+				news.setType(findMovieTypeByMovieID);
 			}
 		} else {
 			lm = newsMapper.selectByExample(null);
 		}
 		for (News news : lm) {
 			List<NewsType> findMovieTypeByMovieID = newsTypeService.findNewsTypeByNewsID(news.getNewsId());
-			news.setListaType(findMovieTypeByMovieID);
-			news.setListbType(findMovieTypeByMovieID);
+			news.setType(findMovieTypeByMovieID);
 		}
 		PageInfo<News> list = new PageInfo<>(lm);
 		return list;
@@ -78,5 +78,23 @@ public class NewsServiceImpl implements NewsService{
 		}
 
 		return lm.size();
+	}
+	
+	@Override
+	public int add(News movie) {
+		int insert = newsMapper.insert(movie);
+		return insert;
+	}
+	
+	@Override
+	public int getMovieId(News movie) {
+		NewsExample me = new NewsExample();
+		me.createCriteria().andTitleEqualTo(movie.getTitle());
+		List<News> selectByExample = newsMapper.selectByExample(me);
+		if (selectByExample.size() > 0) {
+			return selectByExample.get(0).getNewsId();
+		} else {
+			return 0;
+		}
 	}
 }

@@ -40,6 +40,9 @@ import com.newswebsite.vo.Result;
 
 
 
+
+
+
 @Controller
 public class FrameController {
 	@Resource
@@ -108,7 +111,7 @@ public class FrameController {
 	 * @throws IllegalArgumentException
 	 * @throws IllegalAccessException
 	 */
-	@RequestMapping("allMovie")
+	@RequestMapping("allNews")
 	public ModelAndView getAllMovie(ModelAndView model,@RequestParam(defaultValue="1") int current) throws IllegalArgumentException, IllegalAccessException {
 		model.setViewName("manage/allNews");
 		
@@ -137,6 +140,86 @@ public class FrameController {
 		model.addObject("total",total);
 		return model;
 	}
+	
+	/**
+	 添加电影
+	 * @return
+	 */
+	@RequestMapping("addMovie")
+	public String addMovie(Model model) {
+		List<Atype> typeList = tsi.findAllAtype();
+		model.addAttribute("typeList", typeList);
+		return "manage/addMovie";
+	}
+	
+	@RequestMapping("getAllUser")
+ 	public ModelAndView getAllUser(ModelAndView model) throws IllegalArgumentException, IllegalAccessException {
+ 		model.setViewName("manage/allUser");
+ 		PageInfo<User> allUser = usi.getAllUser(1, null);
+ 		List<User> userList = allUser.getList();
+ 		int total = (int) allUser.getTotal();
+ 		if(total % 5 == 0) {
+ 			total = total/5;
+ 		}else {
+ 			total = total/5+1;
+ 		}
+ 		model.addObject("userList",userList);
+ 		model.addObject("total",total);
+ 		return model;
+ 	}
+	
+	@RequestMapping("getAllUserByPage")
+ 	@ResponseBody
+ 	public List<Map<String,Object>> getAllUserByPage(ModelAndView model,@RequestParam(name="name")String name,@RequestParam(defaultValue="1") int current) throws IllegalArgumentException, IllegalAccessException {
+ 		PageInfo<User> allUser = usi.getAllUser(current, name);
+
+ 		List<Map<String,Object>> list = new ArrayList<>();
+ 		for(User u:allUser.getList()) {
+ 			Map<String,Object> map = new HashMap<>();
+ 			Utils.transformBeanToMap(u, map);
+ 			list.add(map);
+ 		}
+ 		int total = (int) allUser.getTotal();
+ 		if(total % 5 == 0) {
+ 			total = total/5;
+ 		}else {
+ 			total = total/5+1;
+ 		}
+ 		Map<String,Object> totalMap = new HashMap<>();
+ 		totalMap.put("total", total);
+ 		list.add(totalMap);
+ 		return list; 
+ 	}
+	
+	/**
+	 添加新闻
+	 * @return
+	 */
+	@RequestMapping("addNews")
+	public String addNews(Model model) {
+		List<Atype> typeList = tsi.findAllAtype();
+		model.addAttribute("typeList", typeList);
+		return "manage/addMovie";
+	}
+	
+	@RequestMapping("toAddMovie")
+	@ResponseBody
+	public Result addMovie(News movie,@RequestParam(value = "typeList[]")String[] typeList) {
+		
+ 		int r = nsi.add(movie);
+		int movieId = nsi.getMovieId(movie);
+		movie.setNewsId(movieId);
+
+		Result re;
+		if(r > 0) {
+			re = new Result(movieId, "添加成功");
+		}else {
+			re = new Result(0, "添加失败");
+		}
+		return re;
+	}
+	
+	
 	/*
 	*//**
 	 * 分类查询
