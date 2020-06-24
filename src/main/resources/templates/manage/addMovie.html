@@ -85,12 +85,12 @@
 				var language = $("#language").val();
 				var foreignName = $("#foreignName").val();
 				var description = CKEDITOR.instances.description.getData();
-				$('input[name="typeId"]:checked').each(function(i){
-					typeList[i] =$(this).val();
-				});
+				var atypeId=$('input[name="typeId"]:checked').val();
+				var btypeId=$('input[name="typeId2"]:checked').val();
 				
 				$.post("toAddMovie",{
-					typeList:typeList,					
+					atypeId:atypeId,
+					btypeId:btypeId,
 					title:name,
 					source:dire,
 					editor:actor,
@@ -113,10 +113,16 @@
 		标题:<input class="easyui-text" type="text" id="mname"><br>
 		来&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;源:<input class="easyui-text" type="text" id=dire><br>
 		编&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;辑:<input class="easyui-text" type="text" id="actor"><br>
-		类型: 
+		第一类型: 
 		<div id="typeList" name="movieType">
 			<label th:each="t:${typeList}" class="check-box">
-    			<input id="type" name="typeId" type="checkbox" th:value="${t.atypeId}" th:text="${t.atype}">
+    			<input id="type" name="typeId" type="radio" th:value="${t.atypeId}" th:text="${t.atype}">
+			</label>
+		</div>
+		第二类型：
+		<div id="typeList2" name="movieType2">
+			<label th:each="t:${typeList2}" class="check-box">
+    			<input id="type2" name="typeId2" type="radio" th:value="${t.btypeId}" th:text="${t.btype}">
 			</label>
 		</div>
 			<br>

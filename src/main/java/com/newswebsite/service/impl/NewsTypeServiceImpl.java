@@ -30,7 +30,6 @@ public class NewsTypeServiceImpl implements NewsTypeService{
 		NewsTypeExample nte=new NewsTypeExample();
 		nte.createCriteria().andAtypeIdEqualTo(atypeId);
 		List<NewsType> list = ntm.selectByExample(nte);
-		System.out.println(list.size());
 		return list;
 	}
 	@Override
@@ -39,6 +38,10 @@ public class NewsTypeServiceImpl implements NewsTypeService{
 		nte.createCriteria().andBtypeIdEqualTo(btypeId);
 		List<NewsType> list = ntm.selectByExample(nte);
 		return list;
+	}
+	@Override
+	public void insert(NewsType newsType) {
+		ntm.insert(newsType);
 	}
 	
 

@@ -4,9 +4,7 @@
     	var msg1=$("#msg1").val()
     	if(msg1=="1"){
     		 settime(obj) 
-    	}
-    	
-    	
+    	}   	
     	function settime(obj) {    
     	    if (countdown == 0) { 
     	        obj.removeAttribute("disabled");    
@@ -23,11 +21,8 @@
     	setTimeout(function() { 
     	    settime(obj) }
     	    ,1000)     	
-    	}
-    	
-    	
-    	$("#mobile").blur(function(){
-    		
+    	}  	
+    	$("#mobile").blur(function(){   		
     		var mobile=$("#mobile").val();
     		if(mobile!=""){  
     			$("#box1").attr("style","display:show")
@@ -46,14 +41,10 @@
         		         }else{
         		        	 $("#box11").attr("class","normal")
         		        	 $("#box11").html("")
-        		        	 $("#get").attr("class","btn").attr("disabled","false")
-        		        	 
-        		         } 
-        		         	
-        		     })
-    				
+        		        	 $("#get").attr("class","btn").attr("disabled","false")        		        	 
+        		         }        		         	
+        		     })    				
     			}
-
     		}else{
     			$("#box1").attr("style","display:none")
     		}
@@ -158,7 +149,6 @@ $("#password").blur(function(){
     function getCode(){
     	if($("#box11").hasClass('normal')){
     		$("#get").removeAttr("disabled");
-    		alert(111)
     		var phonenum =$("#mobile").val();		
     		document.location.href='getCode?phonenum='+phonenum;
     		$("#get").attr("class","btn_disable")

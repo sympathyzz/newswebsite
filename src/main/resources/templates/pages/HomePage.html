@@ -20,10 +20,8 @@
   <title id="pageTitle">环球网_全球生活新门户_环球时报旗下网站</title>
   <!-- 根据缓存和设备跳转到相应的页面 -->
   <!--<script src="//rs2.huanqiucdn.cn/huanqiu/js/www/index/adapter_index.js"></script>-->
-  <!--Ad Survey 广告加载基础代码-->
-  <script type="text/javascript" src="//ipengtai.huanqiu.com/resource/js/base.js?a=1"></script>
-  <link rel="stylesheet" type="text/css" href="//rs1.huanqiucdn.cn/dp/api/assets?dp_csid=cse3pl8tdbi&amp;dp_instanceid=dpe3plc9q0n&amp;dp_commit=291001980b13b213373ece308164da6e3e76cfe0&amp;dp_path=layouts/pc_index/pc_index.css" /> 
-  <link href="//rs2.huanqiucdn.cn/huanqiu/image/www/common/favicon1.ico" rel="shortcut icon" />
+  <link rel="stylesheet" type="text/css" href="css/pc_index.css" /> 
+
  </head>
  <body>
   <!-- Ad Survey 广告位代码  首页全屏new-->
@@ -38,7 +36,7 @@
      <a class="bannerClick" href="http://china.huanqiu.com/special/PRC70YA/index.html" target="_blank"></a> 
      <div class="newBg"> 
       <div class="newCon clear"> 
-       <a href="https://www.huanqiu.com/" target="_blank" class="logoCon"> <img src="//rs2.huanqiucdn.cn/huanqiu/image/www/index/new_logo.png" alt="" /> </a> 
+       <a href="https://www.huanqiu.com/" target="_blank" class="logoCon"> <img src="img/new_logo.png" alt="" /> </a> 
        <div class="rTxt"> 
         <a href="newsPage?atype=国际新闻" target="_blank">国际</a> 
         <a href="newsPage?atype=国内新闻" target="_blank">国内</a> 
@@ -57,10 +55,8 @@
         <a href="//look.huanqiu.com" target="_blank">博览</a> 
         <a href="//chamber.huanqiu.com" target="_blank">商协会</a> 
         <a href="//biz.huanqiu.com" target="_blank">商业</a> 
- 
        </div> 
-       <div class="navBtn"> 
-        <span class="navMore"></span> 
+       <div class="navBtn">      
         <span class="conMore"></span> 
         <span class="resLink" th:if="${session.user!=null}">  
         <a th:href="'userdetail?type=1&userId='+${session.user.userId}" class="btnRes active" target="_blank" th:title="${session.user.username}"></a>
@@ -68,35 +64,10 @@
         <span class="resLink" th:if="${session.user==null}"> 
         <a href="login" class="btnLogin"></a> 
         </span> 
-       </div> 
-       <div class="logoImg"> 
-        <img src="//rs2.huanqiucdn.cn/huanqiu/image/www/index/codeimg2x.png" alt="二维码logo" /> 
-       </div> 
+       </div>       
       </div> 
      </div> 
-    </div> 
-    <div class="newMoreNav"> 
-     <div class="moreNavMain"> 
-      <a href="//quality.huanqiu.com" target="_blank">质量</a> 
-      <a href="//fashion.huanqiu.com" target="_blank">时尚</a> 
-      <a href="//ent.huanqiu.com" target="_blank">娱乐</a> 
-      <a href="//v.huanqiu.com" target="_blank">视频</a> 
-      <a href="//city.huanqiu.com" target="_blank">城市</a> 
-      <a href="//lx.huanqiu.com" target="_blank">教育</a> 
-      <a href="//house.huanqiu.com/" target="_blank">房产</a> 
-      <a href="//hope.huanqiu.com" target="_blank">公益</a> 
-      <a href="//society.huanqiu.com" target="_blank">社会</a> 
-      <a href="//tech.huanqiu.com/diginews/" target="_blank">数码</a> 
-      <a href="//smart.huanqiu.com" target="_blank">智能</a> 
-      <a href="//run.huanqiu.com" target="_blank">跑步</a> 
-      <a href="//ski.huanqiu.com" target="_blank">滑雪</a> 
-      <a href="//uav.huanqiu.com" target="_blank">无人机</a> 
-      <a href="//oversea.huanqiu.com" target="_blank">海外看中国</a> 
-      <a href="//finance.huanqiu.com/br/picks" target="_blank">一带一路</a> 
-      <a href="//cul.huanqiu.com" target="_blank">文化</a> 
-      <a href="//capital.huanqiu.com" target="_blank">创投</a> 
-     </div> 
-    </div> 
+    </div>    
     <!-- 新导航区 -->
    </div>
    <!-- 导航 end-->
@@ -106,8 +77,6 @@
      <!-- 内容部分 begin-->
      <div class="wrapCon">
       <div class="ad">
-       <!-- Ad Survey 广告位代码  首页顶通new-->
-       <script type="text/javascript">AD_SURVEY_Add_AdPos("7004801");</script>
       </div>
       <!-- 第一部分 begin-->
       <div class="conFir">
@@ -143,9 +112,7 @@
            </div>
            <div class="showPage"></div></li>
           <li>
-           <!-- Ad Survey 广告位代码  首页焦点图尾帧new-->
-           <!--<script type="text/javascript">AD_SURVEY_Add_AdPos("7000185");</script>--><script type="text/javascript">AD_SURVEY_Add_AdPos("7004809");</script>
-           <div class="showPage"></div></li>
+          <div class="showPage"></div></li>
           <!--展示图片结束-->
          </ul>
          <div class="foucs"></div>
@@ -220,11 +187,6 @@
            <a href="http://china.huanqiu.com/article/2019-09/15426661.html" target="_blank">这里是描述这里是描述这里是描述这里是描述这里是描述这里是描述这里是描述这里这里是描述这里是描述这里是描述这里是描述这里是描述这里是描述</a> 
           </dd>
          </dl>
-        </div>
-        <div>
-         <!-- Ad Survey 广告位代码  首页小通栏-->
-         <!--<script type="text/javascript">AD_SURVEY_Add_AdPos("7000176");</script>-->
-         <script type="text/javascript">AD_SURVEY_Add_AdPos("7004800");</script>
         </div>
        </div>
        <!-- 右侧 end-->
@@ -366,8 +328,7 @@
              </dl></li> 
            </ul>
           </div>
-          <script src="//rs2.huanqiucdn.cn/huanqiu/js/www/index/jquery1.9.1.js" type="text/javascript"></script>
-          <script>    $(function() {        function add() {            $("#add-btn").click(function() {                $(".commentDay").prepend('<li> <span><strong>|</strong><b>01日</b></span> <em><i></i></em></li>');                $(".commentDetail").prepend('<li><dl class="commentNews"><dt><a href="https://www.huanqiu.com" target="_blank">这里是标题</a></dt><dd><a href="https://www.huanqiu.com" target="_blank">这里是标题</a></dd><dd><a href="https://www.huanqiu.com" target="_blank">这里是标题</a></dd><dd><a href="https://www.huanqiu.com" target="_blank">这里是标题</a></dd><dd><a href="hhttps://www.huanqiu.com" target="_blank">这里是标题</a></dd></dl></li>');                $(".commentDay li").each(function(index, item) {                    if (index == 0) {                        $(this).addClass("commentActive")                    } else {                        $(this).removeClass("commentActive")                    }                    if (index == $(".commentDay li").length - 1) {                        $(this).remove();                    }                });                $(".commentDetail li").each(function(index, item) {                    if (index == 0) {                        $(this).addClass("commentDshow")                    } else {                        $(this).removeClass("commentDshow")                    }                    if (index == $(".commentDetail li").length - 1) {                        $(this).remove();                    }                });            });        }        function sgin() {            $('#editorEle').blur(function() {                var reg = new RegExp('fragmentEdit');                if (reg.test(location.href)) {                    $('#add-btn').css('display', 'none');                }            });            $('#editorEle').focus(function() {                var reg = new RegExp('fragmentEdit');                if (reg.test(location.href)) {                    $('#add-btn').css('display', 'block');                }            });        }        var reg = new RegExp("fragmentEdit");        console.log(sessionStorage.getItem('CSID') && reg.test(location.href));        if (sessionStorage.getItem('CSID') && reg.test(location.href)) {            sgin();            add();        }        $(".commentDay").on("click", "li", function() {            $(".commentDay li").removeClass("commentActive");            $(this).addClass("commentActive");            $(".commentDetail li").removeClass("commentDshow");            $(".commentDetail li").eq($(this).index()).addClass("commentDshow");        });    });</script>
+
          </div>
         </div>
         <!-- 左侧-环球今日评 end-->
@@ -417,17 +378,6 @@
          <div class="indexTitle">
           <strong>专题</strong>
          </div>
-         <!-- Ad Survey 广告位代码  首页专题矩形-->
-         <!--<script type="text/javascript">AD_SURVEY_Add_AdPos("7000191");</script>-->
-         <script type="text/javascript">AD_SURVEY_Add_AdPos("7004797");</script>
-         <ul class="topicNews">
-          <li>
-           <!-- Ad Survey 广告位代码  首页专题文字链1-->
-           <!--<script type="text/javascript">AD_SURVEY_Add_AdPos("7000192");</script>--><script type="text/javascript">AD_SURVEY_Add_AdPos("7004798");</script></li>
-          <li>
-           <!-- Ad Survey 广告位代码  首页专题文字链2-->
-           <!--<script type="text/javascript">AD_SURVEY_Add_AdPos("7000193");</script>--><script type="text/javascript">AD_SURVEY_Add_AdPos("7004799");</script></li>
-         </ul>
         </div>
         <!-- 中间-专题 end-->
        </div>
@@ -439,51 +389,15 @@
          <div class="indexTitle">
           <strong>要闻</strong>
          </div>
-         <div class="secNewsList">
+         <div class="secNewsList" th:each="a:${allNewsList}">
           <!--<cs-let data-src="lets/pc_index_secNewsList1/pc_index_secNewsList1"></cs-let>-->
           <div data-ati-block-key="blockOeDGCuWe8k1go23a" data-ati-block-id="0">
            <style>body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0; list-style:none;}        img { border:none;}        a { text-decoration:none;}        /*a:visited { color:#a7a7a5;} */        a:hover { text-decoration:underline;}        body { font-size:12px; font-family:Microsoft yahei; min-width:1200px; min-height:1000px; user-select: none; }        .clear { zoom:1;}        .clear:after { content:; clear:both; display:block;}        html{ overflow-x:hidden;overflow-y:auto;}        .listp {width:440px; height:38px; line-height:38px; font-size:16px; overflow:hidden; padding-left:15px; background-image:url(//rs2.huanqiucdn.cn/huanqiu/image/www/index/icon.png);background-repeat:no-repeat; background-position:0 -99px;    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}p a { color:#585856;}p a:hover { color:#cb0000;}</style>
-           <p class="listp"><a href="https://world.huanqiu.com/article/3xSK9J4SzLh" target="_blank">特朗普点名纽约州长&quot;要多出力&quot;，结果被怼：你是总统哎！</a></p>
-           <p class="listp"><a href="https://world.huanqiu.com/article/3xSDqNFlr3s" target="_blank">世卫总干事呼吁检测每个疑似病例:谁都不能蒙住双眼救火</a></p>
-           <p class="listp"><a href="https://world.huanqiu.com/article/3xSFiyqWqNG" target="_blank">如何评价自己应对新冠肺炎疫情的表现？特朗普：我打十分</a></p>
-           <p class="listp"><a href="https://world.huanqiu.com/article/3xSCbOVM1Q6" target="_blank">日媒：东京奥组委多名理事同意奥运会推迟至2022年</a></p>
-           <p class="listp"><a href="http://china.huanqiu.com/special/yxdcs/index.html" target="_blank">【英雄的城市 英雄的人民】</a>&nbsp;<a href="https://china.huanqiu.com/article/3xSADNrgdPV" target="_blank">齐心协力 抗击疫情</a></p>
+           <p class="listp"><a th:href="'detailPage?atype='+${a.atype.getAtype()}+'&btype='+${a.btype.getBtype()}+'&newsId='+${a.newsId}" target="_blank" th:text="${a.title}"></a></p>
+           
           </div>
          </div>
-         <div class="secNewsList">
-          <!--<cs-let data-src="lets/pc_index_secNewsList2/pc_index_secNewsList2"></cs-let>-->
-          <!--<cs-let data-src="lets/pc_index_secNewsList3/pc_index_secNewsList3"></cs-let>-->
-          <div data-ati-block-key="blockETHgIDue8k1hkuef" data-ati-block-id="0">
-           <style>body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0; list-style:none;}        img { border:none;}        a { text-decoration:none;}        /*a:visited { color:#a7a7a5;} */        a:hover { text-decoration:underline;}        body { font-size:12px; font-family:Microsoft yahei; min-width:1200px; min-height:1000px; user-select: none; }        .clear { zoom:1;}        .clear:after { content:; clear:both; display:block;}        html{ overflow-x:hidden;overflow-y:auto;}        .listp {width:440px; height:38px; line-height:38px; font-size:16px; overflow:hidden; padding-left:15px; background-image:url(//rs2.huanqiucdn.cn/huanqiu/image/www/index/icon.png);background-repeat:no-repeat; background-position:0 -99px;overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}p a { color:#585856;}p a:hover { color:#cb0000;}</style>
-           <p class="listp"><a href="https://mil.huanqiu.com/article/3xRf5sn24TX" target="_blank">美军大本营开始搭建隔离病房，专门收治感染军人</a></p>
-           <p class="listp"><font face="Microsoft yahei"><a href="https://hys.people-health.cn/m/#/pages/ncovSuff/index" target="_blank">【求助】&nbsp;</a>&nbsp;<a href="http://www.piyao.org.cn/2020yqpy/" target="_blank">【辟谣】</a>&nbsp;<a href="http://china.huanqiu.com/special/zhuaxi/index.html" target="_blank">【抓紧抓实抓细各项防控工作】</a></font></p>
-          </div>
-          <div data-ati-block-key="blockYCdjaWLe8k1hpk9h" data-ati-block-id="0">
-           <style>body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0; list-style:none;}        img { border:none;}        a { text-decoration:none;}        /*a:visited { color:#a7a7a5;} */        a:hover { text-decoration:underline;}        body { font-size:12px; font-family:Microsoft yahei; min-width:1200px; min-height:1000px; user-select: none; }        .clear { zoom:1;}        .clear:after { content:; clear:both; display:block;}        html{ overflow-x:hidden;overflow-y:auto;}        .listp {width:440px; height:38px; line-height:38px; font-size:16px; overflow:hidden; padding-left:15px; background-image:url(//rs2.huanqiucdn.cn/huanqiu/image/www/index/icon.png);background-repeat:no-repeat; background-position:0 -99px;    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}p a { color:#585856;}p a:hover { color:#cb0000;}</style>
-           <p class="listp"><font face="Microsoft yahei"><a href="https://finance.huanqiu.com/" target="_blank">最新解读：中国经济经受住了疫情冲击&nbsp;三月将有明显起色</a></font></p>
-           <p class="listp"><span style="font-family: &quot;Microsoft yahei&quot;;"><a href="https://tech.huanqiu.com/article/3xSBNlTtVeD" target="_blank">小汤山医院与入京集中隔离启动</a>&nbsp;<a href="https://tech.huanqiu.com/article/3xSBHZdFioo" target="_blank">如何帮8万名船员防新冠</a></span></p>
-           <p class="listp"><span style="font-family: &quot;Microsoft yahei&quot;;"><a href="https://finance.huanqiu.com/article/3xSAxhtM5Zi" target="_blank">美联储“放水”如何影响中国</a>&nbsp;<a href="https://tech.huanqiu.com/article/3xSBUqsnqE6" target="_blank">新神经算法芯片有了“嗅觉”</a></span></p>
-          </div>
-         </div>
-         <div class="secNewsList">
-          <!--<cs-let data-src="lets/pc_index_secNewsList4/pc_index_secNewsList4"></cs-let>-->
-          <!--<cs-let data-src="lets/pc_index_secNewsList5/pc_index_secNewsList5"></cs-let>-->
-          <!--<cs-let data-src="lets/pc_index_secNewsList6/pc_index_secNewsList6"></cs-let>-->
-          <div data-ati-block-key="blockH2Z6va6e8k1html1" data-ati-block-id="0">
-           <style>body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0; list-style:none;}        img { border:none;}        a { text-decoration:none;}        /*a:visited { color:#a7a7a5;} */        a:hover { text-decoration:underline;}        body { font-size:12px; font-family:Microsoft yahei; min-width:1200px; min-height:1000px; user-select: none; }        .clear { zoom:1;}        .clear:after { content:; clear:both; display:block;}        html{ overflow-x:hidden;overflow-y:auto;}        .listp {width:440px; height:38px; line-height:38px; font-size:16px; overflow:hidden; padding-left:15px; background-image:url(//rs2.huanqiucdn.cn/huanqiu/image/www/index/icon.png);background-repeat:no-repeat; background-position:0 -99px;    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}p a { color:#585856;}p a:hover { color:#cb0000;}</style>
-           <p class="listp"><a href="https://health.huanqiu.com/article/3xSF0yr90W2" target="_blank">意大利确诊病例增至27980例 总理：数十年来最大危机</a></p>
-           <p class="listp"><a href="https://health.huanqiu.com/article/3xSDlCJPGdl" target="_blank">五角大楼已出现37个确诊病例 美国国防部正副部长被隔离</a></p>
-          </div>
-          <div data-ati-block-key="blockQwRERMee8k1i11a5" data-ati-block-id="0">
-           <style>body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0; list-style:none;}        img { border:none;}        a { text-decoration:none;}        /*a:visited { color:#a7a7a5;} */        a:hover { text-decoration:underline;}        body { font-size:12px; font-family:'Microsoft yahei'; min-width:1200px; min-height:1000px; user-select: none; }        .clear { zoom:1;}        .clear:after { content:''; clear:both; display:block;}        html{ overflow-x:hidden;overflow-y:auto;}        .listp {width:440px; height:38px; line-height:38px; font-size:16px; overflow:hidden; padding-left:15px; background-image:url(//rs2.huanqiucdn.cn/huanqiu/image/www/index/icon.png);background-repeat:no-repeat; background-position:0 -99px;    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}p a { color:#585856;}p a:hover { color:#cb0000;}</style>
-           <p class="listp"><a href="https://fashion.huanqiu.com/gallery/9CaKrnQhYXq" target="_blank">朱一龙 让我们一起来为地球发声</a></p>
-           <p class="listp"><a href="https://ent.huanqiu.com/article/9CaKrnKpWBx" target="_blank">恭喜！唐艺昕发文官宣怀孕：确实是有好消息了</a></p>
-          </div>
-          <div data-ati-block-key="blockT589Mn0e8k1i5ho8" data-ati-block-id="0">
-           <style>body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0; list-style:none;}        img { border:none;}        a { text-decoration:none;}        /*a:visited { color:#a7a7a5;} */        a:hover { text-decoration:underline;}        body { font-size:12px; font-family:Microsoft yahei; min-width:1200px; min-height:1000px; user-select: none; }        .clear { zoom:1;}        .clear:after { content:; clear:both; display:block;}        html{ overflow-x:hidden;overflow-y:auto;}        .listp {width:440px; height:38px; line-height:38px; font-size:16px; overflow:hidden; padding-left:15px; background-image:url(//rs2.huanqiucdn.cn/huanqiu/image/www/index/icon.png);background-repeat:no-repeat; background-position:0 -99px;    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}p a { color:#585856;}p a:hover { color:#cb0000;}</style>
-           <p class="listp"><a href="https://go.huanqiu.com/article/3xSECWE5kFW" target="_blank">迷人的高原明珠泸沽湖 湖旁神秘的“女儿国”</a></p>
-          </div>
-         </div>
+         
         </div>
         <!-- 右侧-要闻 end-->
        </div>
@@ -491,11 +405,7 @@
       </div>
       <!-- 第二部分 end-->
       <!-- 第三部分-新闻 begin-->
-      <div class="ad">
-       <!-- Ad Survey 广告位代码  首页通栏001-->
-       <!--<script type="text/javascript">AD_SURVEY_Add_AdPos("7000177");</script>-->
-       <script type="text/javascript">AD_SURVEY_Add_AdPos("7004802");</script>
-      </div>
+
       <div class="conThr clear">
        <div class="indexBTitle">
         <strong>新闻</strong>
@@ -1397,70 +1307,7 @@
      <!-- 尾巴 end -->
     </div>
    </div>
-   <!-- 内容外侧 end-->
-   <!-- Ad Survey 广告位代码  首页全屏new-->
-   <!--<script type="text/javascript">AD_SURVEY_Add_AdPos("7000186");</script>-->
-   <script type="text/javascript">AD_SURVEY_Add_AdPos("7004795");</script>
-   <!-- Ad Survey 广告位代码  首页跨栏广告new-->
-   <!--<script type="text/javascript">AD_SURVEY_Add_AdPos("7000187");</script>-->
-   <script type="text/javascript">AD_SURVEY_Add_AdPos("7004794");</script>
-   <!-- Ad Survey 广告位代码  首页对联new-->
-   <!--<script type="text/javascript">AD_SURVEY_Add_AdPos("7000188");</script>-->
-   <script type="text/javascript">AD_SURVEY_Add_AdPos("7004793");</script>
-   <!-- Ad Survey 广告位代码  首页浮层new-->
-   <!--<script type="text/javascript">AD_SURVEY_Add_AdPos("7000189");</script>-->
-   <script type="text/javascript">AD_SURVEY_Add_AdPos("7004792");</script>
-   <!-- Ad Survey 广告位代码  首页背投new-->
-   <!--<script type="text/javascript">AD_SURVEY_Add_AdPos("7000190");</script>-->
-   <script type="text/javascript">AD_SURVEY_Add_AdPos("7004796");</script>
-   <script src="//rs2.huanqiucdn.cn/huanqiu/js/www/index/jquery1.9.1.js" type="text/javascript"></script>
-   <script src="//rs2.huanqiucdn.cn/huanqiu/js/www/index/sea.js" type="text/javascript" data-main="//rs2.huanqiucdn.cn/huanqiu/js/www/index/index2015_s.js"></script>
-   <!-- 低版本浏览器升级-->
-   <script>if( !$.cookie('cs_id') ){
-                    document.write('<script src="//rs2.huanqiucdn.cn/huanqiu/js/www/index/browser_upgrade.js" type="text/javascript"><\/script>');
-                }</script>
-   <!-- PDMI代码 人民日报大屏统计-->
-   <script src="//rs2.huanqiucdn.cn/huanqiu/js/www/index/pdmi.js" type="text/javascript"></script>
+
   </div>
-  <!-- 统计代码 -->
-  <script type="text/javascript">var _report = _report || [];
-    _report.push(['_setAccount', 'webGYj6Xe3q91jcs3']);
-
-    _report.push(['_setCustomVar', 1, 'custom1', '']);
-    _report.push(['_setCustomVar', 2, 'custom2', '']);
-    _report.push(['_setCustomVar', 3, 'custom3', '']);
-    _report.push(['_setCustomVar', 4, 'custom4', '']);
-    _report.push(['_setCustomVar', 5, 'custom5', '']);
-    _report.push(['_setCustomVar', 6, 'custom6', '']);
-    _report.push(['_setCustomVar', 7, 'custom7', '']);
-    _report.push(['_setCustomVar', 8, 'custom8', '']);
-
-    (function() {
-        var report = document.createElement("script");
-        report.src = "https://analysis-reporting.develenv.com/report.js?id=858d45e1f01f24b9ae02e83792a3ce3c";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(report, s);
-    })();
-    // 百度推送
-    (function(){
-        var bp = document.createElement('script');
-        var curProtocol = window.location.protocol.split(':')[0];
-        if (curProtocol === 'https') {
-            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-        }
-        else {
-            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-        }
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(bp, s);
-    })();
-    // 百度统计 
-    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F1fc983b4c305d209e7e05d96e713939f' type='text/javascript'%3E%3C/script%3E"));
-    // cnzz 统计
-    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-    document.write(unescape("%3Cspan style='display:none' id='cnzz_stat_icon_1000010102'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1000010102' type='text/javascript'%3E%3C/script%3E"));</script>
-  <!-- /end 统计代码 -->
-  <script type="text/javascript" src="//rs1.huanqiucdn.cn/dp/api/assets?dp_csid=cse3pl8tdbi&amp;dp_instanceid=dpe3plc9q0n&amp;dp_commit=291001980b13b213373ece308164da6e3e76cfe0&amp;dp_path=layouts/pc_index/pc_index.js"></script> 
  </body>
 </html>

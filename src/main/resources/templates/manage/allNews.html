@@ -341,7 +341,7 @@
 					<tr th:each="m:${movieList}" >
 						<td th:text="${m.title}"></td>
 						<td th:text="${m.type}"></td>
-						<td th:text="${m.content}"></td>
+						<td th:text="${m.content.substring(0,20)}+'......'"></td>
 						<td th:text="${#dates.format(m.date, 'yyyy-MM-dd HH:mm:ss')}"></td>
 						<td th:text="${m.source}"></td>
 						<td th:text="${m.editor}"></td>
@@ -378,25 +378,26 @@
 				},function(data){
 					$("#tbody").empty();
 					$.each(data,function(k,v){
-						if(v.name != null &&v.name != "" && v.name != "undefined"){
+						if(v.title != null &&v.title != "" && v.title != "undefined"){
 							var s = "";
-							if(v.status == "showing"){
+							/* if(v.status == "showing"){
 								s = '			<button class="layui-btn" onclick="upd('+v.movieId+',1)">下架</button>\n'
 							}else{
 								s = '			<button class="layui-btn" onclick="upd('+v.movieId+',2)">上映</button>\n'
-							}
-								
+							} */
+							
 								$("#tbody").append(
 										 '	<tr>' +
-										 '		<td>'+v.name+'</td>' +
+										 '		<td>'+v.title+'</td>' +
 										 '		<td>'+v.type+'</td>' +
-										 '		<td>'+v.duration+'</td>' +
-										 '		<td>'+v.releaseTime+'</td>' +
-										 '		<td>'+v.region+'</td>' +
-										 '		<td>'+v.language+'</td>' +
+										 '		<td>'+v.content.substring(0,20)+'......'+'</td>' +
+										 '		<td th:text="${#dates.format('+v.date+', "yyyy-MM-dd HH:mm:ss")}"></td>' +
+										 '		<td>'+v.source+'</td>' +
+										 '		<td>'+v.editor+'</td>' +
+										 '		<td>'+v.author+'</td>' +
 										 '		<td>' +
-										 '			<button class="layui-btn" onclick="details('+v.movieId+')">详细信息</button>\n' +
-										  s+
+										 '			<button class="layui-btn" onclick="details('+v.newsId+')">详细信息</button>\n' +
+										 /*  s+ */
 										 '		</td>' +
 										 '	</tr>'
 										)
@@ -421,27 +422,28 @@
 				$.each(data,function(k,v){
 					if(v.name != null &&v.name != "" && v.name != "undefined"){
 						var s = "";
-						if(v.status == "showing"){
+						/* if(v.status == "showing"){
 							s = '			<button class="layui-btn" onclick="upd('+v.movieId+',1)">下架</button>\n'
 						}else{
 							s = '			<button class="layui-btn" onclick="upd('+v.movieId+',2)">上映</button>\n'
-						}
+						} */
 							
-							$("#tbody").append(
-									 '	<tr>' +
-									 '		<td>'+v.name+'</td>' +
-									 '		<td>'+v.type+'</td>' +
-									 '		<td>'+v.duration+'</td>' +
-									 '		<td>'+v.releaseTime+'</td>' +
-									 '		<td>'+v.region+'</td>' +
-									 '		<td>'+v.language+'</td>' +
-									 '		<td>' +
-									 '			<button class="layui-btn" onclick="details('+v.movieId+')">详细信息</button>\n' +
-									  s+
-									 '		</td>' +
-									 '	</tr>'
-									)
-					}
+						$("#tbody").append(
+								 '	<tr>' +
+								 '		<td>'+v.title+'</td>' +
+								 '		<td>'+v.type+'</td>' +
+								 '		<td>'+v.content.substring(0,20)+'......'+'</td>' +
+								 '		<td th:text="${#dates.format('+v.date+', "yyyy-MM-dd HH:mm:ss")}"></td>' +
+								 '		<td>'+v.source+'</td>' +
+								 '		<td>'+v.editor+'</td>' +
+								 '		<td>'+v.author+'</td>' +
+								 '		<td>' +
+								 '			<button class="layui-btn" onclick="details('+v.newsId+')">详细信息</button>\n' +
+								 /*  s+ */
+								 '		</td>' +
+								 '	</tr>'
+								)
+				}
 					if(v.total != null && v.total != ""){
 						$("#total").val(v.total);
 					}

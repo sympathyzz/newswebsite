@@ -62,4 +62,14 @@ public class Comments {
     public void setAgreeNum(Integer agreeNum) {
         this.agreeNum = agreeNum;
     }
+    private String username;
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+    
 }

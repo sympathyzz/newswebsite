@@ -101,7 +101,7 @@ public class UserController {
     }
     
     @RequestMapping("/doReg")
-    public String doReg( Model m, String mobile,String password
+    public void doReg( Model m, String mobile,String password
     		,HttpServletResponse response ,HttpSession session
     		,String code,String code2,String msg
     		,String name,String idno) {
@@ -117,7 +117,12 @@ public class UserController {
     			cookie.setPath("/");
     			response.addCookie(cookie);
     			session.setAttribute("user", user);
-        		return "pages/HomePage";
+    			try {
+					response.sendRedirect("index");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
         	
     	
     	
@@ -138,7 +143,7 @@ public class UserController {
     		m.addAttribute("msg","请输入手机号再获取动态码");
     		 return "pages/Register1";
     	}
-    	/*PhoneUtil pu=new PhoneUtil();
+    	PhoneUtil pu=new PhoneUtil();
     	int a=(int) ((Math.random()*9+1)*1000);
     	String code=String.valueOf(a);
     	System.out.println(code);
@@ -147,8 +152,8 @@ public class UserController {
 				} catch (ClientException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}*/
-    	m.addAttribute("code",1234);
+				}
+    	m.addAttribute("code",code);
     	m.addAttribute("phonenum",phonenum);
     	m.addAttribute("phone",phonenum);
     	m.addAttribute("type",type);

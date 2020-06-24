@@ -16,6 +16,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.annotation.SynthesizedAnnotation;
 import org.springframework.stereotype.Controller;
@@ -29,10 +30,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageInfo;
 import com.newswebsite.bean.Atype;
+import com.newswebsite.bean.Btype;
 import com.newswebsite.bean.News;
 import com.newswebsite.bean.NewsType;
+import com.newswebsite.bean.NewsTypeExample;
 import com.newswebsite.bean.User;
+import com.newswebsite.dao.NewsMapper;
 import com.newswebsite.service.impl.NewsServiceImpl;
+import com.newswebsite.service.impl.NewsTypeServiceImpl;
 import com.newswebsite.service.impl.TypeServiceImpl;
 import com.newswebsite.service.impl.UserServiceImpl;
 import com.newswebsite.util.Utils;
@@ -47,6 +52,9 @@ import com.newswebsite.vo.Result;
 public class FrameController {
 	@Resource
 	NewsServiceImpl nsi;
+	
+	@Resource
+	NewsTypeServiceImpl ntsi;
 	
 	@Resource
 	TypeServiceImpl tsi;
@@ -142,6 +150,50 @@ public class FrameController {
 	}
 	
 	/**
+	 * 分类查询
+	 * @param model
+	 * @param current
+	 * @param sname
+	 * @param sTime
+	 * @return
+	 * @throws IllegalArgumentException
+	 * @throws IllegalAccessException
+	 * @throws ParseException
+	 */
+	@RequestMapping("getAllMovieBypage")
+	@ResponseBody
+	public List<Map<String,Object>> getAllMovieBypage(ModelAndView model,@RequestParam(defaultValue="1") int current,@RequestParam(name="sname") String sname,@RequestParam(name="sTime") String sTime) throws IllegalArgumentException, IllegalAccessException, ParseException {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = null;
+		if(sTime != null && sTime.trim().length() > 0) {
+			date = sdf.parse(sTime);
+		}
+		int total = nsi.findTotal(sname,date);
+		if(total % 5 == 0) {
+			total = total / 5;
+		}else {
+			total = (total / 5) + 1;
+		}
+		Map<String,Object> tmap = new HashMap();
+		tmap.put("total", total);
+		PageInfo<News> l = nsi.findAllNews(current,sname,date);
+		List<Map<String,Object>> list = new ArrayList<>();
+		for(News m:l.getList()) {
+			Map<String,Object> m1 = new HashMap<>();
+			String type = "";
+			Utils.transformBeanToMap(m, m1);
+			for(NewsType mt:m.getType()) {
+				type+=tsi.findAtypeByTypeID(mt.getAtypeId()).getAtype()+"   ";
+			}
+			m1.put("type", type);
+			list.add(m1);
+		}
+		list.add(tmap);
+		return list;
+	}
+	
+	
+	/**
 	 添加电影
 	 * @return
 	 */
@@ -198,21 +250,27 @@ public class FrameController {
 	@RequestMapping("addNews")
 	public String addNews(Model model) {
 		List<Atype> typeList = tsi.findAllAtype();
+		List<Btype> typeList2 = tsi.findAllBtype();
 		model.addAttribute("typeList", typeList);
+		model.addAttribute("typeList2", typeList2);
 		return "manage/addMovie";
 	}
 	
 	@RequestMapping("toAddMovie")
 	@ResponseBody
-	public Result addMovie(News movie,@RequestParam(value = "typeList[]")String[] typeList) {
+	public Result addMovie(News news,Integer atypeId,Integer btypeId) {
 		
- 		int r = nsi.add(movie);
-		int movieId = nsi.getMovieId(movie);
-		movie.setNewsId(movieId);
-
+ 		int r = nsi.add(news);
+		int newsId = nsi.getMovieId(news);
+		news.setNewsId(newsId);
+		NewsType nt=new NewsType();
+		nt.setNewsId(newsId);
+		nt.setAtypeId(atypeId);
+		nt.setBtypeId(btypeId);
+		ntsi.insert(nt);
 		Result re;
 		if(r > 0) {
-			re = new Result(movieId, "添加成功");
+			re = new Result(newsId, "添加成功");
 		}else {
 			re = new Result(0, "添加失败");
 		}

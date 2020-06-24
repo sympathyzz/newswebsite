@@ -44,14 +44,14 @@ public class NewsServiceImpl implements NewsService{
 			if (sTime != null) {
 				createCriteria.andDateEqualTo(sTime);
 			}
-			lm = newsMapper.selectByExample(me);
+			lm = newsMapper.selectByExampleWithBLOBs(me);
 
 			for (News news : lm) {
 				List<NewsType> findMovieTypeByMovieID = newsTypeService.findNewsTypeByNewsID(news.getNewsId());
 				news.setType(findMovieTypeByMovieID);
 			}
 		} else {
-			lm = newsMapper.selectByExample(null);
+			lm = newsMapper.selectByExampleWithBLOBs(null);
 		}
 		for (News news : lm) {
 			List<NewsType> findMovieTypeByMovieID = newsTypeService.findNewsTypeByNewsID(news.getNewsId());

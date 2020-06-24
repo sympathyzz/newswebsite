@@ -5,58 +5,22 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <meta name="format-detection" content="telephone=no" />
   <script>var global_host = {host : "world.cse3pl8tdbi.huanqiu.com",path : "world.cse3pl8tdbi.huanqiu.com"}</script>
-  <script type="text/javascript" src="//rs2.huanqiucdn.cn/huanqiu/js/www/common/global_control.js"></script>
+  <script type="text/javascript" src="js/global_control.js"></script>
   <meta name="keywords" content="国际时事,时政要闻,国际热点,新闻人物,国际博览,评论分析,外媒关注,媒体聚焦" />
   <meta name="description" content="环球网王牌频道,专门显示国际时事、综述评论及图片的栏目,主要包括环球时报和环球网独家新闻、国际博览、新闻人物、评论分析、媒体聚焦等。" />
   <title id="pageTitle">国际新闻_环球网</title>
   <script>var article = 1;</script>
   <!--Ad Survey 广告加载基础代码-->
-  <script type="text/javascript" src="//ipengtai.huanqiu.com/resource/js/base_mobile2.js"></script>
+  <!-- <script type="text/javascript" src="//ipengtai.huanqiu.com/resource/js/base_mobile2.js"></script> -->
   <link rel="stylesheet" type="text/css" href="//rs1.huanqiucdn.cn/dp/api/assets?dp_csid=cse3pl8tdbi&amp;dp_instanceid=dpe3plc9q0n&amp;dp_commit=992bdbe5fb2304d85ccac6031026ea13a3686888&amp;dp_path=layouts/global/global.css,layouts/world_index/world_index.css,controls/all_index_nav_new/all_index_nav_new.css,controls/go_index_site_nav/go_index_site_nav.css,controls/all_index_focus/all_index_focus.css,controls/list/list.css,controls/all_index_modG/all_index_modG.css,controls/all_index_hqIndustry_s/all_index_hqIndustry_s.css,controls/all_index_news/all_index_news.css,controls/all_index_hotnews_s/all_index_hotnews_s.css" /> 
   <link href="//rs2.huanqiucdn.cn/huanqiu/image/www/common/favicon1.ico" rel="shortcut icon" />
  </head>
  <body>
-  <!-- S 导航-->
-  <!--<div class="topIndex" id="header-wrap">-->
-  <!--    <div id="top-ad-wrap">-->
-  <!--        <div class="onPadding">-->
-  <!--            <div  class="topAd_01">-->
-  <!-- Ad Survey 广告位代码  文章页-顶通-->
-  <!--                <script type="text/javascript">AD_SURVEY_Add_AdPos("7004736");</script>-->
-  <!--            </div>-->
-  <!--        </div>-->
-  <!--    </div>-->
-  <!--    <div class="hdTop">-->
-  <!--        <div class="navClick"></div>-->
-  <!--        <div class="navTopSec">-->
-  <!--            <div class="nav-container">-->
-  <!--                <a href="http://www.huanqiu.com" target="_self" class="nav-logo"></a>-->
-  <!--                <div class="nav-section">-->
-  <!--                    <div class="nav-section-submenu">-->
-  <!--                    </div>-->
-  <!--                    <div class="nav-section-article-title"></div>-->
-  <!--                </div>-->
-  <!--                <form id="search-form" class="search-form" action="" name="headerSearch">-->
-  <!--                    <div class="search-form-fields">-->
-  <!--                        <input class="search-input" type="text" placeholder="Search...">-->
-  <!--                        <input type="button" class="search-submit-button" value="Search »">-->
-  <!--                    </div>-->
-  <!--                    <div class="search-button" id="search-button"></div>-->
-  <!--                </form>-->
-  <!--                <div class="nav-menu" id="menu"></div>-->
-  <!--            </div>-->
-  <!--        </div>-->
-  <!--        <cs-control data-src="controls/all_index_nav/all_index_nav"></cs-control>-->
-  <!--    </div>-->
-  <!--</div>-->
-  <!-- S 导航-->
+
   <div class="topIndex" id="header-wrap">
    <div id="top-ad-wrap">
     <div class="onPadding">
-     <div class="topAd_01">
-      <!-- Ad Survey 广告位代码顶通  // 7004730 ->商业频道顶通  -->
-      <script type="text/javascript">AD_SURVEY_Add_AdPos("7004736");</script>
-     </div>
+    
     </div>
    </div>
    <div class="hdTop">
@@ -232,7 +196,7 @@
           <div class="slide-tit">
            <p>埃及将暂停所有进出埃及的航班</p>
           </div></a></li>
-        <li class="f-ad"><script type="text/javascript">AD_SURVEY_Add_AdPos("7004735");</script></li>
+        
        </ul>
        <div class="focus-page"></div>
        <div class="focus-opts">
@@ -247,9 +211,9 @@
        <div class="m-recommend-con">
    <ul id="recommend" th:each="a:${newsList}">
     <li class="list-item-onepic">
-    <a href="/article/3yNgtkmzS3p" target="_blank">
+    <a th:href="'detailPage?atype='+${atype}+'&btype='+${btype}+'&newsId='+${a.newsId}" target="_blank">
     <span class="listPw">
-    <img class="imgMark loadMark imgH fadeImg" src="https://rs1.huanqiucdn.cn/dp/api/images/imageDir/d4d28bfadc819cf8d9cd8619d984614d.jpeg?w=240" alt="" />
+    <img class="imgMark loadMark imgH fadeImg" src="img/haha.jpg" alt="" />
     </span>
     <div class="con-txt">
      <h4 th:text="${a.title}"></h4>
@@ -279,10 +243,6 @@
        </ul>
       </div>
       <!--广告-->
-      <div class="ad_01">
-       <!-- Ad Survey 广告位代码  文章页画中画02  //7004730->商业频道画中画 -->
-       <script type="text/javascript">AD_SURVEY_Add_AdPos("7004737");</script>
-      </div>
       <!-- C短标题 -->
       <div class="r-hqIndustry s-box r-hqIndustry-s">
        <h3><span></span>今日推荐</h3>
@@ -338,52 +298,6 @@
    </div>
    <!--<div class="left-gray"></div>-->
   </div>
-  <!-- 底部广告 -->
-  <div class="float-ad">
-   <div class="fAd-content">
-    <script type="text/javascript">AD_SURVEY_Add_AdPos("7005138");</script>
-   </div>
-  </div>
-  <a href="javascript:void(0)" class="fAd-btn">收起</a>
-  <!-- 统计代码 -->
-  <script type="text/javascript">var _report = _report || [];
-    _report.push(['_setAccount', 'webGYj6Xe3q91jcs3']);
-
-    _report.push(['_setCustomVar', 1, 'custom1', '']);
-    _report.push(['_setCustomVar', 2, 'custom2', '']);
-    _report.push(['_setCustomVar', 3, 'custom3', '']);
-    _report.push(['_setCustomVar', 4, 'custom4', '']);
-    _report.push(['_setCustomVar', 5, 'custom5', '']);
-    _report.push(['_setCustomVar', 6, 'custom6', '']);
-    _report.push(['_setCustomVar', 7, 'custom7', '']);
-    _report.push(['_setCustomVar', 8, 'custom8', '']);
-
-    (function() {
-        var report = document.createElement("script");
-        report.src = "https://analysis-reporting.develenv.com/report.js?id=858d45e1f01f24b9ae02e83792a3ce3c";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(report, s);
-    })();
-    // 百度推送
-    (function(){
-        var bp = document.createElement('script');
-        var curProtocol = window.location.protocol.split(':')[0];
-        if (curProtocol === 'https') {
-            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-        }
-        else {
-            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-        }
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(bp, s);
-    })();
-    // 百度统计 
-    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F1fc983b4c305d209e7e05d96e713939f' type='text/javascript'%3E%3C/script%3E"));
-    // cnzz 统计
-    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-    document.write(unescape("%3Cspan style='display:none' id='cnzz_stat_icon_1000010102'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1000010102' type='text/javascript'%3E%3C/script%3E"));</script>
-  <!-- /end 统计代码 -->
-  <script type="text/javascript" src="//rs1.huanqiucdn.cn/dp/api/assets?dp_csid=cse3pl8tdbi&amp;dp_instanceid=dpe3plc9q0n&amp;dp_commit=992bdbe5fb2304d85ccac6031026ea13a3686888&amp;dp_path=layouts/global/jquery1.9.1.js,layouts/world_index/jquery.carouFredSel-6.2.1-packed.js,layouts/world_index/world_index.js,controls/global_control/global_control.js,controls/all_index_nav_new/all_index_nav_new.js,controls/go_index_site_nav/go_index_site_nav.js,controls/list/list.js,controls/all_index_hqIndustry_s/all_index_hqIndustry_s.js,controls/all_index_news/all_index_news.js,controls/all_index_hotnews_s/all_index_hotnews_s.js"></script> 
+  
  </body>
 </html>
